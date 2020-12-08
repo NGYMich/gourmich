@@ -20,6 +20,7 @@ export class RecetteService {
   }
 
   rootURL = 'https://easy-cook-back.herokuapp.com/api';
+  // rootURL = 'http://localhost:8080/api';
   private _deleteOperationSuccessfulEvent$: Subject<boolean> = new Subject();
 
   getRecettes() {

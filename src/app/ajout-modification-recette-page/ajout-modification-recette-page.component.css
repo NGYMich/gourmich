@@ -84,6 +84,7 @@ h3 {
   text-align: left;
   clear: none;
   margin-top: 4.5%;
+  /*margin-left: 5%;*/
 }
 
 .nb-personne-formfield {
@@ -170,19 +171,23 @@ h3 {
   height: 800px;
   background-position: center center;
   background-repeat: no-repeat;
-  display: flex;
   border: solid;
-  margin-right: 10px;
-  margin-left: 10%;
-  max-width: 40%;
+  float: left;
+  max-width: 100%;
+}
+
+.image-div {
+  min-width: 10%;
+  max-width: 600px;
 }
 
 .information-delete-div {
-  padding: 0px 16px 16px 16px;
+  padding: 0px 16px 16px 32px;
   min-width: 100px;
-  max-width: 1500px;
+  max-width: 60%;
   text-align: left;
   /*border: 1px solid black;*/
+  float:left;
 }
 
 .modification-recette-button {
@@ -194,16 +199,17 @@ h3 {
 
 .suppression-recette-button {
   margin-left: 40px;
+  margin-right: 16px;
   float: left;
 }
 
 .recette-to-delete-infos {
-  margin-left: 150px;
+  margin-left: 15%;
 }
 
 
 .ingredients-div {
-  padding: 0px 16px 16px 16px;
+  padding: 0px 16px 16px 0px;
   min-width: 10%;
   max-width: 40%;
   float:left;
@@ -229,3 +235,37 @@ mat-divider {
   max-height: 50px;
   text-align: justify;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  float: left;
+}
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  border: 1px solid;
+}
+.two {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+.three {
+  grid-column: 1;
+  grid-row: 2 / 5;
+}
+.four {
+  grid-column: 3;
+  grid-row: 3;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4;
+}
+
