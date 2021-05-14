@@ -18,7 +18,7 @@ export class ListeRecettesComponent implements OnInit {
     {field: 'temps_preparation', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'temps_cuisson', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'temps_total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter', valueFormatter: params => params.value + '/10'},
   ];
   gridOptions = {
     rowSelection: 'single',
@@ -39,11 +39,11 @@ export class ListeRecettesComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getListeRecettes();
   }
 
-  getListeRecettes() {
+  getListeRecettes(): void {
     this.recetteService.getRecettes().subscribe(data => {
       // console.log(data);
       // @ts-ignore
@@ -58,8 +58,9 @@ export class ListeRecettesComponent implements OnInit {
     });
   }
 
-  minToHours(minutes: number) {
-    let newMinutes, newHours;
+  minToHours(minutes: number): string {
+    let newMinutes;
+    let newHours;
     if (minutes < 60) {
       return minutes + 'min';
     } else {
@@ -69,12 +70,12 @@ export class ListeRecettesComponent implements OnInit {
     return newMinutes !== 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
   }
 
-  onGridReady(params) {
+  onGridReady(params): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }
 
-  autoSizeAll() {
+  autoSizeAll(): void {
     const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
     // this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
     this.gridApi.sizeColumnsToFit(); // all column same size
