@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Recette} from '../model/recette';
 import {RecetteService} from '../services/RecetteService';
@@ -7,7 +7,8 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-ajout-modification-recette-page',
   templateUrl: './ajout-modification-recette-page.component.html',
-  styleUrls: ['./ajout-modification-recette-page.component.css']
+  styleUrls: ['./ajout-modification-recette-page.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AjoutModificationRecettePageComponent implements OnInit {
 
@@ -18,6 +19,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   isRecetteSupprimee = false;
   isSelectedRecette = false;
   isRecetteModifiee = false;
+  isAdmin = true;
+  adminPassword = '';
 
   informationsForm: FormGroup;
   ingredientForm: FormGroup;
@@ -297,6 +300,12 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     }
     return newMinutes !== 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
 
+  }
+
+  hasAdminRights($event): void {
+    this.adminPassword = ($event.target as HTMLInputElement).value;
+    this.isAdmin = this.adminPassword === 'admin' ? true : false;
+    console.log(this.isAdmin);
   }
 }
 

@@ -1,8 +1,20 @@
-<div class="button-div">
+<div [hidden]="isAdmin">
+  <mat-form-field style="width: 100%;  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center">
+    <input (keyup)="hasAdminRights($event)" matInput placeholder="Admin Password"
+           style="font-size: 20px; text-align: center;" type="password"/>
+  </mat-form-field>
+
+</div>
+
+<div [hidden]="!isAdmin" class="button-div">
   <button (click)="showAddRecetteDiv()" class="recipe-button" color="ajout" mat-raised-button>
     Ajouter une nouvelle recette
   </button>
-  <button (click)="showModifyRecetteDiv()" class="recipe-button" color="modification" mat-raised-button *ngIf="true">
+  <button (click)="showModifyRecetteDiv()" *ngIf="true" class="recipe-button" color="modification" mat-raised-button>
     Modifier une recette
   </button>
   <button (click)="showDeleteRecetteDiv()" class="recipe-button" color="suppression" mat-raised-button>
@@ -28,14 +40,12 @@
       </mat-form-field>
       <br>
 
-
       <mat-form-field appearance="legacy" class="categorie-form-field">
         <mat-label>Catégorie</mat-label>
         <mat-select [(value)]="selectedCategory" formControlName="categorie">
           <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
 
       <mat-form-field appearance="legacy">
         <mat-label>Nombre de personnes</mat-label>
@@ -185,7 +195,7 @@
     <button (click)="modifierRecette()" class="modification-recette-button" color="modification-recette-etape"
             mat-raised-button type="button">Modifier la recette
     </button>
-    <h3 style="float: left; margin-left: 22px; margin-top: 60px;" *ngIf="isRecetteModifiee">Recette modifiée !</h3>
+    <h3 *ngIf="isRecetteModifiee" style="float: left; margin-left: 22px; margin-top: 60px;">Recette modifiée !</h3>
   </div>
   <br>
 
@@ -199,20 +209,20 @@
       <form [formGroup]="modifyInformationsForm">
         <mat-form-field appearance="legacy">
           <mat-label>Nom de la recette</mat-label>
-          <input formControlName="nom" matInput [(ngModel)]="selectedRecetteToModify.nom">
+          <input [(ngModel)]="selectedRecetteToModify.nom" formControlName="nom" matInput>
         </mat-form-field>
         <br>
         <mat-form-field appearance="legacy">
           <mat-label>Auteur</mat-label>
-          <input formControlName="auteur" matInput [(ngModel)]="selectedRecetteToModify.auteur">
+          <input [(ngModel)]="selectedRecetteToModify.auteur" formControlName="auteur" matInput>
         </mat-form-field>
         <br>
 
 
         <mat-form-field appearance="legacy" class="categorie-form-field">
           <mat-label>Catégorie</mat-label>
-          <mat-select [(value)]="selectedCategory" formControlName="categorie"
-                      [(ngModel)]="selectedRecetteToModify.categorie">
+          <mat-select [(ngModel)]="selectedRecetteToModify.categorie" [(value)]="selectedCategory"
+                      formControlName="categorie">
             <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -220,41 +230,41 @@
 
         <mat-form-field appearance="legacy">
           <mat-label>Nombre de personnes</mat-label>
-          <input formControlName="nb_personnes" matInput [(ngModel)]="selectedRecetteToModify.nb_personnes">
+          <input [(ngModel)]="selectedRecetteToModify.nb_personnes" formControlName="nb_personnes" matInput>
         </mat-form-field>
         <br>
 
 
         <mat-form-field appearance="legacy">
           <mat-label>Description de la recette</mat-label>
-          <textarea formControlName="description" matInput [(ngModel)]="selectedRecetteToModify.description"></textarea>
+          <textarea [(ngModel)]="selectedRecetteToModify.description" formControlName="description" matInput></textarea>
         </mat-form-field>
         <br>
         <mat-form-field appearance="legacy">
           <mat-label>Lien image</mat-label>
-          <input formControlName="lien_image" matInput [(ngModel)]="selectedRecetteToModify.lien_image">
+          <input [(ngModel)]="selectedRecetteToModify.lien_image" formControlName="lien_image" matInput>
         </mat-form-field>
         <br>
 
         <mat-form-field appearance="legacy">
           <mat-label>Lien vidéo</mat-label>
-          <input formControlName="lien_video" matInput [(ngModel)]="selectedRecetteToModify.lien_video">
+          <input [(ngModel)]="selectedRecetteToModify.lien_video" formControlName="lien_video" matInput>
         </mat-form-field>
         <br>
         <mat-form-field appearance="legacy">
           <mat-label>Temps de préparation (en minutes)</mat-label>
-          <input formControlName="temps_preparation" matInput [(ngModel)]="selectedRecetteToModify.temps_preparation">
+          <input [(ngModel)]="selectedRecetteToModify.temps_preparation" formControlName="temps_preparation" matInput>
         </mat-form-field>
         <br>
         <mat-form-field appearance="legacy">
           <mat-label>Temps de cuisson (en minutes)</mat-label>
-          <input formControlName="temps_cuisson" matInput [(ngModel)]="selectedRecetteToModify.temps_cuisson">
+          <input [(ngModel)]="selectedRecetteToModify.temps_cuisson" formControlName="temps_cuisson" matInput>
         </mat-form-field>
         <br>
 
         <mat-form-field appearance="legacy">
           <mat-label>Note (sur 10)</mat-label>
-          <input formControlName="note" matInput [(ngModel)]="selectedRecetteToModify.note">
+          <input [(ngModel)]="selectedRecetteToModify.note" formControlName="note" matInput>
         </mat-form-field>
       </form>
     </div>
@@ -360,7 +370,7 @@
             mat-raised-button type="button">Supprimer la recette
     </button>
   </div>
-  <h3 style="text-align: left; margin-top: 23px;" *ngIf="isRecetteSupprimee">Recette supprimée !</h3>
+  <h3 *ngIf="isRecetteSupprimee" style="text-align: left; margin-top: 23px;">Recette supprimée !</h3>
 
   <br>
   <br>
@@ -383,8 +393,8 @@
         <mat-list>
           <div mat-subheader>Ingrédients</div>
           <mat-selection-list>
-            <mat-list-option checkboxPosition="before"
-                             *ngFor="let ingredient of selectedRecetteToDelete.liste_ingredients; let i = index"
+            <mat-list-option *ngFor="let ingredient of selectedRecetteToDelete.liste_ingredients; let i = index"
+                             checkboxPosition="before"
                              class="ingredients-list">
               {{ingredient.quantite}} {{ingredient.nom}}
             </mat-list-option>
