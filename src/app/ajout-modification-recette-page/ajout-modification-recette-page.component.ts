@@ -54,27 +54,27 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private recetteService: RecetteService) {
   }
 
-  get informations() {
+  get informations(): FormArray {
     return this.informationsForm.get('nom') as FormArray;
   }
 
-  get ingredients() {
+  get ingredients(): FormArray {
     return this.ingredientForm.get('ingredients') as FormArray;
   }
 
-  get etapes() {
+  get etapes(): FormArray {
     return this.etapeForm.get('etapes') as FormArray;
   }
 
-  get modifyInformations() {
+  get modifyInformations(): FormArray {
     return this.modifyInformationsForm.get('nom') as FormArray;
   }
 
-  get modifyIngredients() {
+  get modifyIngredients(): FormArray {
     return this.modifyIngredientForm.get('modifyIngredients') as FormArray;
   }
 
-  get modifyEtapes() {
+  get modifyEtapes(): FormArray {
     return this.modifyEtapeForm.get('modifyEtapes') as FormArray;
   }
 
@@ -124,53 +124,53 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   }
 
-  addIngredient() {
+  addIngredient(): void {
     this.ingredients.push(this.formBuilder.group({nom: '', quantite: ''}));
   }
 
-  addModifyIngredient() {
+  addModifyIngredient(): void {
     this.modifyIngredients.push(this.formBuilder.group({nom: '', quantite: ''}));
   }
 
-  addEtape() {
+  addEtape(): void {
     this.etapes.push(this.formBuilder.group({nom_etape: ''}));
   }
 
-  addModifyEtape() {
+  addModifyEtape(): void {
     this.modifyEtapes.push(this.formBuilder.group({nom_etape: ''}));
   }
 
-  deleteIngredient(index) {
+  deleteIngredient(index): void {
     this.ingredients.removeAt(index);
   }
 
-  deleteModifyIngredient(index) {
+  deleteModifyIngredient(index): void {
     this.modifyIngredients.removeAt(index);
   }
 
 
-  deleteEtape(index) {
+  deleteEtape(index): void {
     this.etapes.removeAt(index);
   }
 
-  deleteModifyEtape(index) {
+  deleteModifyEtape(index): void {
     this.modifyEtapes.removeAt(index);
   }
 
-  showAddRecetteDiv() {
+  showAddRecetteDiv(): void {
     this.modifyRecipeFormIsShown = false;
     this.deleteRecipeFormIsShown = false;
     this.addRecipeFormIsShown = !this.addRecipeFormIsShown;
     this.hideAllDivWhenAddModifyOrDelete();
   }
 
-  hideAllDivWhenAddModifyOrDelete() {
+  hideAllDivWhenAddModifyOrDelete(): void {
     this.isRecetteEnregistree = false;
     this.isRecetteSupprimee = false;
     this.isSelectedRecette = false;
     this.isRecetteModifiee = false;
   }
-  showModifyRecetteDiv() {
+  showModifyRecetteDiv(): void {
     this.addRecipeFormIsShown = false;
     this.deleteRecipeFormIsShown = false;
     this.modifyRecipeFormIsShown = !this.modifyRecipeFormIsShown;
@@ -178,7 +178,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.getListeRecettes();
   }
 
-  showDeleteRecetteDiv() {
+  showDeleteRecetteDiv(): void {
     this.addRecipeFormIsShown = false;
     this.modifyRecipeFormIsShown = false;
     this.deleteRecipeFormIsShown = !this.deleteRecipeFormIsShown;
@@ -186,7 +186,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.getListeRecettes();
   }
 
-  addRecette() {
+  addRecette(): void {
     const etapesArray = this.etapes.value.map(etape => etape.nom_etape);
     const ingredientsArray = null;
     const newNote = this.informationsForm.get('note').value == '' ? '?' : this.informationsForm.get('note').value;
@@ -212,10 +212,10 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.getListeRecettes();
   }
 
-  modifierRecette() {
+  modifierRecette(): void {
     // console.log('recette à modifier : ' + this.selectedRecetteToModify);
     const modifiedEtapesArray = this.modifyEtapes.value.map(a => a.nom_etape);
-    const newNote = this.modifyInformationsForm.get('note').value == '' ? '?' : this.modifyInformationsForm.get('note').value;
+    const newNote = this.modifyInformationsForm.get('note').value === '' ? '?' : this.modifyInformationsForm.get('note').value;
     // console.log(this.modifyIngredients.value);
     const modifiedRecette: Recette = {
       recetteId: this.selectedRecetteToModify.recetteId,
@@ -239,11 +239,11 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.getListeRecettes();
   }
 
-  changeRecetteAffichee(nomRecette) {
+  changeRecetteAffichee(nomRecette): void {
     this.isSelectedRecette = true;
     // modifier les ingrédients
     this.modifyIngredients.clear();
-    for (let i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
+    for(let i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
       this.modifyIngredients.push(this.formBuilder.group({
         nom: this.selectedRecetteToModify.liste_ingredients[i].nom,
         quantite: this.selectedRecetteToModify.liste_ingredients[i].quantite
@@ -251,13 +251,13 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     }
     // modifier les étapes
     this.modifyEtapes.clear();
-    for (let i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
+    for(let i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
       this.modifyEtapes.push(this.formBuilder.group({nom_etape: this.selectedRecetteToModify.liste_etapes[i]}));
     }
 
   }
 
-  deleteRecette() {
+  deleteRecette(): void {
     this.recetteService.deleteRecette(this.selectedRecetteToDelete);
 
     this.deleteOperationSuccessfulSubscription = this.recetteService.deleteOperationSuccessfulEvent$
@@ -273,7 +273,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   }
 
-  async getListeRecettes() {
+  async getListeRecettes(): void {
     this.recetteService.getRecettes().subscribe(data => {
       this.listeRecettes = data;
       // console.log(this.listeRecettes);
@@ -286,15 +286,16 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   }
 
 
-  minToHours(minutes: number) {
-    let newMinutes, newHours, newTime;
+  minToHours(minutes: number): string {
+    let newMinutes;
+    let newHours;
     if (minutes < 60) {
       return minutes + 'min';
     } else {
       newHours = Math.trunc(minutes / 60);
       newMinutes = minutes - newHours * 60;
     }
-    return newMinutes != 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
+    return newMinutes !== 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
 
   }
 }

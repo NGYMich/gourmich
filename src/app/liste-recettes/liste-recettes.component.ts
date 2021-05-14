@@ -33,6 +33,10 @@ export class ListeRecettesComponent implements OnInit {
   private gridColumnApi;
 
   constructor(private recetteService: RecetteService, public dialog: MatDialog) {
+    window.onresize = (e) =>
+    {
+      this.autoSizeAll();
+    };
   }
 
   ngOnInit() {
@@ -86,6 +90,8 @@ export class ListeRecettesComponent implements OnInit {
       data: {recette: selectedData},
       autoFocus: false
     });
+
+
 
   }
 }
