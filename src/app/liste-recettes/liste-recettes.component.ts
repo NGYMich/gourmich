@@ -12,13 +12,13 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class ListeRecettesComponent implements OnInit {
   columnDefs = [
-    {field: 'categorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_preparation', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_cuisson', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter', valueFormatter: params => params.value + '/10'},
+    {field: 'temps_preparation', headerName: 'Temps de préparation', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'temps_cuisson', headerName: 'Temps de cuisson', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter', valueFormatter: params => params.value === '?' ? '' : params.value + '/10'},
   ];
   gridOptions = {
     rowSelection: 'single',
