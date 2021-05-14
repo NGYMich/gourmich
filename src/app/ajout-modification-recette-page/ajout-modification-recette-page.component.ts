@@ -8,7 +8,6 @@ import {Subscription} from 'rxjs';
   selector: 'app-ajout-modification-recette-page',
   templateUrl: './ajout-modification-recette-page.component.html',
   styleUrls: ['./ajout-modification-recette-page.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class AjoutModificationRecettePageComponent implements OnInit {
 

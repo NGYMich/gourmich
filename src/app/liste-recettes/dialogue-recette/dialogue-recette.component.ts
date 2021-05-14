@@ -1,11 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Recette} from "../../model/recette";
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialogue-recette',
   templateUrl: './dialogue-recette.component.html',
-  styleUrls: ['./dialogue-recette.component.css']
+  styleUrls: ['./dialogue-recette.component.css'],
 })
 export class DialogueRecetteComponent implements OnInit {
 

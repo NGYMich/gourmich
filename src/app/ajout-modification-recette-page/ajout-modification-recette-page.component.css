@@ -40,16 +40,13 @@ h3 {
 
 .categorie-form-field {
   width: 50%;
+
 }
 
-.mat-select-trigger {
-  min-width: 50px;
+.mat-form-field-infix{
+  width: 80px;
 }
 
-
-form-field-group {
-  display: flex;
-}
 
 .add-recipe-informations {
   margin-left: 0px;

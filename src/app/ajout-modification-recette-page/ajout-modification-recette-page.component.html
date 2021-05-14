@@ -42,7 +42,8 @@
 
       <mat-form-field appearance="legacy" class="categorie-form-field">
         <mat-label>Catégorie</mat-label>
-        <mat-select [(value)]="selectedCategory" formControlName="categorie">
+        <mat-select [(value)]="selectedCategory"
+                    formControlName="categorie">
           <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</mat-option>
         </mat-select>
       </mat-form-field>

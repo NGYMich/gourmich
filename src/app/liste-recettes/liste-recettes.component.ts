@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {RecetteService} from '../services/RecetteService';
 import {Recette} from '../model/recette';
 import {DialogueRecetteComponent} from './dialogue-recette/dialogue-recette.component';
