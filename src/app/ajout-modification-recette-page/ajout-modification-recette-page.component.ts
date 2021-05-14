@@ -18,7 +18,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   isRecetteSupprimee = false;
   isSelectedRecette = false;
   isRecetteModifiee = false;
-  isAdmin = true;
+  isAdmin = false;
   adminPassword = '';
 
   informationsForm: FormGroup;
