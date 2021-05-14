@@ -273,7 +273,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   }
 
-  async getListeRecettes(): void {
+  async getListeRecettes() {
     this.recetteService.getRecettes().subscribe(data => {
       this.listeRecettes = data;
       // console.log(this.listeRecettes);
