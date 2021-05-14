@@ -187,9 +187,9 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   }
 
   addRecette() {
-    let etapesArray = this.etapes.value.map(etape => etape.nom_etape);
-    let ingredientsArray = null;
-    let newNote = this.informationsForm.get('note').value == '' ? '?' : this.informationsForm.get('note').value;
+    const etapesArray = this.etapes.value.map(etape => etape.nom_etape);
+    const ingredientsArray = null;
+    const newNote = this.informationsForm.get('note').value == '' ? '?' : this.informationsForm.get('note').value;
     console.log(this.informationsForm.get('note').value);
     const recette: Recette = {
       recetteId: null,
@@ -214,8 +214,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   modifierRecette() {
     // console.log('recette à modifier : ' + this.selectedRecetteToModify);
-    let modifiedEtapesArray = this.modifyEtapes.value.map(a => a.nom_etape);
-    let newNote = this.modifyInformationsForm.get('note').value == '' ? '?' : this.modifyInformationsForm.get('note').value;
+    const modifiedEtapesArray = this.modifyEtapes.value.map(a => a.nom_etape);
+    const newNote = this.modifyInformationsForm.get('note').value == '' ? '?' : this.modifyInformationsForm.get('note').value;
     // console.log(this.modifyIngredients.value);
     const modifiedRecette: Recette = {
       recetteId: this.selectedRecetteToModify.recetteId,

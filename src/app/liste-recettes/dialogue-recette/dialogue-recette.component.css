@@ -21,10 +21,10 @@
   float: left;
 }
 
-.ingredients-list {
+.ingredients-div .ingredients-list {
   text-align-all: center;
-  min-height: 50px;
-  height: 100%
+  height: 100%;
+  min-height: 40px;
 }
 
 .etapes-div {
@@ -32,7 +32,8 @@
   float: left;
 }
 
-.etapes-list {
+.etapes-div .etapes-list {
   height: 100%;
-  min-height: 25px;
+  min-height: 50px;
+  max-height: 300px;
 }

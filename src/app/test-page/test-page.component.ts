@@ -1,61 +1,62 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Recette} from "../model/recette";
 import {RecetteService} from "../services/RecetteService";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {DialogueRecetteComponent} from "./dialogue-recette/dialogue-recette.component";
+import {DialogueRecetteComponent} from "../liste-recettes/dialogue-recette/dialogue-recette.component";
 import {timeout} from "rxjs/operators";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
 
 
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
-  styleUrls: ['./test-page.component.css']
+  styleUrls: ['./test-page.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class TestPageComponent implements OnInit {
-  columnDefs = [
-    {field: 'categorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_preparation', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_cuisson', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-  ]
-  gridOptions = {
-    rowSelection: "single",
-
-  };
-  searchValue;
+  displayedColumns: string[] = ['categorie', 'auteur', 'nom', 'temps_preparation', 'temps_cuisson', 'temps_total', 'note'];
   newData;
-  rowData: any;
+  dataSource;
   expandedElement: Recette | null;
+  hasDataLoaded = false;
   interval: any;
-  private gridApi;
-  private gridColumnApi;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private recetteService: RecetteService, public dialog: MatDialog) {
+  constructor(private recetteService: RecetteService) {
   }
 
   ngOnInit() {
     this.getListeRecettes();
+    /*    this.interval = setInterval(() => {
+          this.getListeRecettes();
+          console.log('called getListeRecettes()');
+        }, 60*1000); // every minute*/
   }
 
-  getListeRecettes() {
-    this.recetteService.getRecettes().subscribe(data => {
-      // console.log(data);
-      // @ts-ignore
-      this.newData = data;
-      this.newData.forEach(recette => {
-        recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
-        recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
-        recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
-      });
-      this.rowData = this.newData;
-      //this.dataSource.sort = this.sort;
-    })
+
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
-  minToHours(minutes: number) {
+  applyFilter(event
+                :
+                Event
+  ) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  minToHours(minutes : number  ) {
     var newMinutes, newHours, newTime;
     if (minutes < 60) {
       return minutes + "min";
@@ -66,27 +67,21 @@ export class TestPageComponent implements OnInit {
     return newMinutes != 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
+  getListeRecettes() {
+    this.recetteService.getRecettes().subscribe(data => {
+      // console.log(data);
+      // @ts-ignore
+      this.hasDataLoaded = true;
+      this.newData = data;
+      this.newData.forEach(recette => {
+        recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
+        recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
+        recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
+      });
+      this.dataSource = new MatTableDataSource(this.newData);
+      //this.dataSource.sort = this.sort;
+    })
   }
 
-  autoSizeAll() {
-    const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
-    // this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
-    this.gridApi.sizeColumnsToFit(); // all column same size
-  }
-
-  ouvrirRecette(): void {
-    let selectedNodes = this.gridApi.getSelectedNodes();
-    let selectedData = selectedNodes.map(node => node.data)[0];
-    console.log('selectedData: ', selectedData)
-    const dialogRef = this.dialog.open(DialogueRecetteComponent, {
-      width: '100%',
-      height: '80%',
-      data: {recette: selectedData},
-      autoFocus: false
-    });
-
-  }
 }
+

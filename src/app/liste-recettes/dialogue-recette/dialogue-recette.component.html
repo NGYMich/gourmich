@@ -6,7 +6,7 @@
   <h1 style="font-size: 30px; text-align: left">{{recette.nom}}
   </h1>
 
-  <h3 style="font-size: 20px;"> {{recette.description}}</h3>
+  <p style="font-size: 15px;"> {{recette.description}}</p>
   <div class="ingredients-div">
     <mat-list>
       <div mat-subheader>Ingrédients</div>
@@ -21,7 +21,7 @@
   <mat-divider [vertical]="true"></mat-divider>
 
   <div class="etapes-div">
-    <mat-list>
+    <mat-list class="test">
       <div mat-subheader>Étapes</div>
       <mat-list-item *ngFor="let etape of recette.liste_etapes; let i = index;" checkboxPosition="before"
                      class="etapes-list">
