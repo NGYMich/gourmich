@@ -81,6 +81,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isAdmin = false;
+    this.adminPassword = '';
     this.ingredientForm = this.formBuilder.group({
       ingredients: this.formBuilder.array([])
     });
