@@ -16,3 +16,7 @@ body {
 .ag-row-hover {
   cursor: pointer;
 }
+
+.my-panel .mat-dialog-container {
+  border-radius: 30px;
+}

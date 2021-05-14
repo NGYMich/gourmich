@@ -89,10 +89,8 @@ export class ListeRecettesComponent implements OnInit {
       width: '100%',
       height: '80%',
       data: {recette: selectedData},
-      autoFocus: false
+      autoFocus: false,
+      panelClass: 'my-panel'
     });
-
-
-
   }
 }

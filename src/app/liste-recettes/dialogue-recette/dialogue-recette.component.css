@@ -1,4 +1,3 @@
-
 .informations-random-recette-div {
   margin-left: 250px;
 }
@@ -7,6 +6,8 @@
   height: 700px;
   width: 30%;
   border: solid;
+  border-radius: 40px;
+
   float: left;
   max-width: 100%;
   margin-right: 30px;
@@ -15,7 +16,7 @@
 
 
 .ingredients-div {
-  padding: 0px 0px 16px 0px;
+  padding: 0 0 16px 0;
   min-width: 10%;
   max-width: 30%;
   float: left;

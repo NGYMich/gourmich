@@ -6,37 +6,33 @@
   background-color: lavender;
   color: black;
   float: none;
-
+  border-radius: 10px;
 }
 
 .informations-random-recette-div {
   margin-left: 300px;
 }
 
-
 .center-cropped {
   margin-left: 100px;
   height: 700px;
   width: 500px;
   border: solid;
+  border-radius: 10px;
   float: left;
   max-width: 100%;
   margin-right: 30px;
 }
 
 .ingredients-div {
-  padding: 0px 0px 16px 0px;
+  padding: 0 0 16px 0;
   min-width: 10%;
   max-width: 70%;
   float:left;
 }
 
 .etapes-div {
-  min-width: 0px;
+  min-width: 0;
   max-width: 50%;
   float:left;
-}
-
-bodybg-color {
-  background-color: blue;
 }
