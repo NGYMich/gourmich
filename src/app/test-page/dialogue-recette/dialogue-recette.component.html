@@ -1,0 +1,32 @@
+<div class="image-div">
+  <img class="center-cropped" src={{recette.lien_image}}>
+</div>
+
+<div class="informations-random-recette-div">
+  <h1 style="font-size: 30px; text-align: left">{{recette.nom}}
+  </h1>
+
+  <h3 style="font-size: 20px;"> {{recette.description}}</h3>
+  <div class="ingredients-div">
+    <mat-list>
+      <div mat-subheader>Ingrédients</div>
+      <mat-selection-list style="">
+        <mat-list-option *ngFor="let ingredient of recette.liste_ingredients"
+                         checkboxPosition="before"
+                         class="ingredients-list"
+        >{{ingredient.quantite}} {{ingredient.nom}} </mat-list-option>
+      </mat-selection-list>
+    </mat-list>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+
+  <div class="etapes-div">
+    <mat-list>
+      <div mat-subheader>Étapes</div>
+      <mat-list-item *ngFor="let etape of recette.liste_etapes; let i = index;" checkboxPosition="before"
+                     class="etapes-list">
+        {{i + 1}}. {{etape}}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

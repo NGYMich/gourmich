@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {Recette} from "../model/recette";
-import {RecetteService} from "../services/RecetteService";
-import {Subscription} from "rxjs";
+import {Recette} from '../model/recette';
+import {RecetteService} from '../services/RecetteService';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-ajout-modification-recette-page',
@@ -31,22 +31,22 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   selectedCategory;
   selectedRecetteToDelete;
   selectedRecetteToModify = {
-    recetteId: "",
-    categorie: "",
-    nb_personnes: "",
-    auteur: "",
-    nom: "",
-    description: "",
-    lien_image: "",
-    lien_vieo: "",
-    temps_preparation: "",
-    temps_cuisson: "",
-    temps_total: "",
-    note: "",
+    recetteId: '',
+    categorie: '',
+    nb_personnes: '',
+    auteur: '',
+    nom: '',
+    description: '',
+    lien_image: '',
+    lien_vieo: '',
+    temps_preparation: '',
+    temps_cuisson: '',
+    temps_total: '',
+    note: '',
     liste_ingredients: [],
     liste_etapes: []
   };
-  //selectedRecetteToModify = new Recette();
+  // selectedRecetteToModify = new Recette();
   categories = ['Entrée', 'Plat', 'Dessert', 'Side Dish', 'Autres'];
   listeRecettes;
   deleteOperationSuccessfulSubscription: Subscription;
@@ -187,9 +187,9 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   }
 
   addRecette() {
-    var etapesArray = this.etapes.value.map(a => a.nom_etape);
-    var ingredientsArray = null;
-    var newNote = this.informationsForm.get('note').value == "" ? "?" : this.informationsForm.get('note').value;
+    let etapesArray = this.etapes.value.map(etape => etape.nom_etape);
+    let ingredientsArray = null;
+    let newNote = this.informationsForm.get('note').value == '' ? '?' : this.informationsForm.get('note').value;
     console.log(this.informationsForm.get('note').value);
     const recette: Recette = {
       recetteId: null,
@@ -214,9 +214,9 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   modifierRecette() {
     // console.log('recette à modifier : ' + this.selectedRecetteToModify);
-    var modifiedEtapesArray = this.modifyEtapes.value.map(a => a.nom_etape);
-    var newNote = this.modifyInformationsForm.get('note').value == "" ? "?" : this.modifyInformationsForm.get('note').value;
-    //console.log(this.modifyIngredients.value);
+    let modifiedEtapesArray = this.modifyEtapes.value.map(a => a.nom_etape);
+    let newNote = this.modifyInformationsForm.get('note').value == '' ? '?' : this.modifyInformationsForm.get('note').value;
+    // console.log(this.modifyIngredients.value);
     const modifiedRecette: Recette = {
       recetteId: this.selectedRecetteToModify.recetteId,
       categorie: this.modifyInformationsForm.get('categorie').value,
@@ -243,7 +243,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.isSelectedRecette = true;
     // modifier les ingrédients
     this.modifyIngredients.clear();
-    for (var i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
+    for (let i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
       this.modifyIngredients.push(this.formBuilder.group({
         nom: this.selectedRecetteToModify.liste_ingredients[i].nom,
         quantite: this.selectedRecetteToModify.liste_ingredients[i].quantite
@@ -251,7 +251,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     }
     // modifier les étapes
     this.modifyEtapes.clear();
-    for (var i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
+    for (let i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
       this.modifyEtapes.push(this.formBuilder.group({nom_etape: this.selectedRecetteToModify.liste_etapes[i]}));
     }
 
@@ -276,20 +276,20 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   async getListeRecettes() {
     this.recetteService.getRecettes().subscribe(data => {
       this.listeRecettes = data;
-      //console.log(this.listeRecettes);
+      // console.log(this.listeRecettes);
 /*      this.listeRecettes.forEach(recette => {
         recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
         recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
         recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
       })*/
-    })
+    });
   }
 
 
   minToHours(minutes: number) {
-    var newMinutes, newHours, newTime;
+    let newMinutes, newHours, newTime;
     if (minutes < 60) {
-      return minutes + "min";
+      return minutes + 'min';
     } else {
       newHours = Math.trunc(minutes / 60);
       newMinutes = minutes - newHours * 60;

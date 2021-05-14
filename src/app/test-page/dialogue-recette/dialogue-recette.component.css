@@ -1,0 +1,38 @@
+
+.informations-random-recette-div {
+  margin-left: 250px;
+}
+
+.center-cropped {
+  height: 700px;
+  width: 30%;
+  border: solid;
+  float: left;
+  max-width: 100%;
+  margin-right: 30px;
+  vertical-align: center;
+}
+
+
+.ingredients-div {
+  padding: 0px 0px 16px 0px;
+  min-width: 10%;
+  max-width: 30%;
+  float: left;
+}
+
+.ingredients-list {
+  text-align-all: center;
+  min-height: 50px;
+  height: 100%
+}
+
+.etapes-div {
+  max-width: 50%;
+  float: left;
+}
+
+.etapes-list {
+  height: 100%;
+  min-height: 25px;
+}

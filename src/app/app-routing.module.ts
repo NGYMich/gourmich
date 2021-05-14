@@ -9,7 +9,6 @@ import {AjoutModificationRecettePageComponent} from "./ajout-modification-recett
 import {RecetteAleatoirePageComponent} from "./recette-aleatoire-page/recette-aleatoire-page.component";
 import {TestPageComponent} from "./test-page/test-page.component";
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
@@ -20,8 +19,6 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'test', component: TestPageComponent}
 ]
-
-
 @NgModule({
   declarations: [],
   imports: [

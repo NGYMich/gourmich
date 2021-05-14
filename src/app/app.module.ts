@@ -27,6 +27,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AgGridModule} from "ag-grid-angular";
+import { DialogueRecetteComponent } from './test-page/dialogue-recette/dialogue-recette.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -39,6 +42,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RecetteAleatoirePageComponent,
     LivreRecettesPageComponent,
     TestPageComponent,
+    DialogueRecetteComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     FormsModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

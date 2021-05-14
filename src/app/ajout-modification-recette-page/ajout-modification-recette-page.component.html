@@ -17,7 +17,7 @@
     </h1>
 
     <form [formGroup]="informationsForm">
-      <mat-form-field appearance="legacy">
+      <mat-form-field appearance="legacy" style>
         <mat-label>Nom de la recette</mat-label>
         <input formControlName="nom" matInput>
       </mat-form-field>
@@ -39,7 +39,7 @@
 
       <mat-form-field appearance="legacy">
         <mat-label>Nombre de personnes</mat-label>
-        <input type="number" formControlName="nb_personnes" matInput>
+        <input formControlName="nb_personnes" matInput>
       </mat-form-field>
       <br>
 

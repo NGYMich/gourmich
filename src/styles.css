@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 html, body {
   height: 100%;
@@ -7,4 +9,14 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.ag-row-hover {
+  cursor: pointer;
+}
+.mat-select-trigger {
+  min-width: 80vw;
+}
+
+.mat-select-panel {
+  max-height: 80vh !important;
 }

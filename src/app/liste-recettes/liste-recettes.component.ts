@@ -32,10 +32,10 @@ export class ListeRecettesComponent implements OnInit {
 
   ngOnInit() {
     this.getListeRecettes();
-    this.interval = setInterval(() => {
+/*    this.interval = setInterval(() => {
       this.getListeRecettes();
       console.log('called getListeRecettes()');
-    }, 60*1000); // every minute
+    }, 60*1000); // every minute*/
   }
 
 
@@ -62,7 +62,6 @@ export class ListeRecettesComponent implements OnInit {
       newMinutes = minutes - newHours * 60;
     }
     return newMinutes != 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
-
   }
 
   getListeRecettes() {

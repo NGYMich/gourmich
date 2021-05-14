@@ -26,6 +26,7 @@ export class RecetteService {
   getRecettes() {
     console.log(this.rootURL + '/recettes');
     return this.http.get(this.rootURL + '/recettes');
+    console.info(this.rootURL);
   }
 
   addRecette(recette: Recette) {
