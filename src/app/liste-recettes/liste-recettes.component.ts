@@ -15,14 +15,39 @@ export class ListeRecettesComponent implements OnInit {
     {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_preparation', headerName: 'Temps de préparation', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'temps_cuisson', headerName: 'Temps de cuisson', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {
+      field: 'temps_preparation',
+      headerName: 'Temps de préparation',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter'
+    },
+    {
+      field: 'temps_cuisson',
+      headerName: 'Temps de cuisson',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter'
+    },
     {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'note', sortable: true, resizable: true, filter: 'agTextColumnFilter', valueFormatter: params => params.value === '?' ? '' : params.value + '/10'},
+    {
+      field: 'note',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
+    },
   ];
   gridOptions = {
     rowSelection: 'single',
-
+    pagination: true,
+    sortable: true,
+    resizable: true,
+    flex: 1,
+    filter: true,
+    minWidth: 100,
+    paginationPageSize: 17,
+    domLayout: 'autoHeight'
   };
   searchValue;
   newData;
@@ -33,8 +58,7 @@ export class ListeRecettesComponent implements OnInit {
   private gridColumnApi;
 
   constructor(private recetteService: RecetteService, public dialog: MatDialog) {
-    window.onresize = (e) =>
-    {
+    window.onresize = (e) => {
       this.autoSizeAll();
     };
   }
