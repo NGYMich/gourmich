@@ -2,6 +2,7 @@ export class Recette {
   recetteId: string;
   nb_personnes: number;
   categorie: string;
+  difficulte: string;
   auteur: string;
   nom: string;
   description: string;

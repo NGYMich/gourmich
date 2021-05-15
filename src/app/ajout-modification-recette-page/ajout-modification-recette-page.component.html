@@ -48,6 +48,15 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field appearance="legacy" class="difficulte-form-field">
+        <mat-label>Difficulté</mat-label>
+        <mat-select [(value)]="selectedDifficulte"
+                    formControlName="difficulte">
+          <mat-option *ngFor="let difficulte of difficultes" [value]="difficulte">{{difficulte}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
       <mat-form-field appearance="legacy">
         <mat-label>Nombre de personnes</mat-label>
         <input formControlName="nb_personnes" matInput>
@@ -227,7 +236,20 @@
             <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="difficulte-form-field">
+          <mat-label>Difficulté</mat-label>
+          <mat-select [(ngModel)]="selectedRecetteToModify.difficulte" [(value)]="selectedDifficulte"
+                      formControlName="difficulte">
+            <mat-option *ngFor="let difficulte of difficultes" [value]="difficulte">{{difficulte}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
         <br>
+
+
+
 
         <mat-form-field appearance="legacy">
           <mat-label>Nombre de personnes</mat-label>

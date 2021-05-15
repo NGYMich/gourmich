@@ -31,10 +31,12 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
 
   selectedCategory;
+  selectedDifficulte;
   selectedRecetteToDelete;
   selectedRecetteToModify = {
     recetteId: '',
     categorie: '',
+    difficulte: '',
     nb_personnes: '',
     auteur: '',
     nom: '',
@@ -50,6 +52,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   };
   // selectedRecetteToModify = new Recette();
   categories = ['Entrée', 'Plat', 'Dessert', 'Side Dish', 'Autres'];
+  difficultes = ['Facile', 'Moyen', 'Difficile', 'Incommensurable'];
   listeRecettes;
   deleteOperationSuccessfulSubscription: Subscription;
 
@@ -91,6 +94,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       nom: new FormControl(''),
       auteur: new FormControl(''),
       categorie: new FormControl(''),
+      difficulte: new FormControl(''),
       nb_personnes: new FormControl(''),
       description: new FormControl(''),
       lien_image: new FormControl(''),
@@ -112,6 +116,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       nom: new FormControl(''),
       auteur: new FormControl(''),
       categorie: new FormControl(''),
+      difficulte: new FormControl(''),
       nb_personnes: new FormControl(''),
       description: new FormControl(''),
       lien_image: new FormControl(''),
@@ -196,6 +201,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     const recette: Recette = {
       recetteId: null,
       categorie: this.informationsForm.get('categorie').value,
+      difficulte: this.informationsForm.get('difficulte').value,
       nb_personnes: this.informationsForm.get('nb_personnes').value,
       auteur: this.informationsForm.get('auteur').value,
       nom: this.informationsForm.get('nom').value,
@@ -222,6 +228,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     const modifiedRecette: Recette = {
       recetteId: this.selectedRecetteToModify.recetteId,
       categorie: this.modifyInformationsForm.get('categorie').value,
+      difficulte: this.modifyInformationsForm.get('difficulte').value,
       nb_personnes: this.modifyInformationsForm.get('nb_personnes').value,
       auteur: this.modifyInformationsForm.get('auteur').value,
       nom: this.modifyInformationsForm.get('nom').value,

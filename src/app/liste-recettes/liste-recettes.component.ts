@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RecetteService} from '../services/RecetteService';
 import {Recette} from '../model/recette';
 import {DialogueRecetteComponent} from './dialogue-recette/dialogue-recette.component';
@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {fromEvent, Observable, Subscription} from 'rxjs';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {DialogueRecetteMobileComponent} from './dialogue-recette-mobile/dialogue-recette-mobile.component';
+import {isNumeric} from 'rxjs/internal-compatibility';
+import {FirstDataRenderedEvent} from 'ag-grid-community';
 
 
 @Component({
@@ -18,40 +20,50 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
   resizeSubscription$: Subscription;
   columnDefs = [];
   mobileColumnDefs = [
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'}
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100}
   ];
   desktopColumnDefs = [
-    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', hide: true,
+    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
+    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 470},
+    {
+      field: 'nb_personnes',
+      headerName: 'Personnes',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter', width: 150,
+    },
+    {field: 'difficulte', headerName: 'Difficulté', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
+    {
+      field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100, hide: true,
       getQuickFilterText: params => {
-      let allIngredients = '';
-      for (let i = 0; i < params.value.length; i++) {
-          allIngredients = allIngredients + params.value[i].nom;
+        let allIngredients = '';
+        for (const ingredient of params.value) {
+          allIngredients = allIngredients + ingredient.nom;
         }
-      return allIngredients;
-      }},
+        return allIngredients;
+      }
+    },
     {
       field: 'temps_preparation',
       headerName: 'Temps de préparation',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter'
+      filter: 'agTextColumnFilter', width: 200
     },
     {
       field: 'temps_cuisson',
       headerName: 'Temps de cuisson',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter'
+      filter: 'agTextColumnFilter', width: 175
     },
-    {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
     {
       field: 'note',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter',
+      filter: 'agTextColumnFilter', width: 200,
       valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
     },
   ];
@@ -62,12 +74,9 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     domLayout: 'autoHeight'
   };
 
-  deviceInfo = null;
   searchValue;
   newData;
   rowData: any;
-  expandedElement: Recette | null;
-  interval: any;
   isMobile: boolean;
   private gridApi;
   private gridColumnApi;
@@ -76,11 +85,11 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isMobile = this.deviceService.isMobile();
     this.getListeRecettes();
+    this.isMobile = this.deviceService.isMobile();
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
-      this.autoSizeAll();
+      // this.autoSizeAll(false);
     });
   }
 
@@ -92,9 +101,9 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.recetteService.getRecettes().subscribe(data => {
       this.newData = data;
       this.newData.forEach(recette => {
-        recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
-        recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
-        recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
+        recette.temps_total = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
+        recette.temps_cuisson = isNumeric(recette.temps_cuisson) ? this.minToHours(Number(recette.temps_cuisson)) : recette.temps_cuisson;
+        recette.temps_preparation = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation)) : recette.temps_preparation;
       });
       this.rowData = this.newData;
       // this.dataSource.sort = this.sort;
@@ -117,12 +126,20 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.setMobileOrDesktopColumns();
+    // setTimeout(() => this.autoSizeAll(false), 0);
+
+    // this.autoSizeAll(false);
+
   }
 
-  autoSizeAll(): void {
+  autoSizeAll(skipHeader): void {
     // const allColumnIds = this?.gridColumnApi?.getAllColumns().map((column) => column.colId);
     // this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
-    this.gridApi.sizeColumnsToFit(); // all column same size
+    // this.gridApi.sizeColumnsToFit(); // all column same size
+    // console.log('autosizeall');
+     // const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
+     // this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+
   }
 
   ouvrirRecette(): void {
@@ -153,10 +170,8 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     if (this.isMobile) {
       console.log('detected mobile');
       this.columnDefs = this.mobileColumnDefs;
-
     } else {
       this.columnDefs = this.desktopColumnDefs;
-      this.gridApi.sizeColumnsToFit(); // all column same size
     }
   }
 }

@@ -39,9 +39,14 @@ h3 {
 }
 
 .categorie-form-field {
-  width: 50%;
-
+  width: 40%;
 }
+
+.difficulte-form-field {
+  width: 40%;
+  margin-left: 19%;
+}
+
 
 .mat-form-field-infix{
   width: 80px;

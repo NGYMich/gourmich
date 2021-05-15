@@ -7,18 +7,19 @@
   <input width="30%" matInput type="text"
          [(ngModel)]="searchValue"/>
 </mat-form-field>
+<button style="margin-left: 5%" (click)="autoSizeAll(false)"> test </button>
 
 
 
 <ag-grid-angular
-  style="width: 100%; height: 87%;"
+  style="width: 100%; height: 100%;"
   class="ag-theme-alpine"
   [rowData]="rowData"
   [columnDefs]="columnDefs"
   [gridOptions]="gridOptions"
   [quickFilterText]="searchValue"
   (gridReady)="onGridReady($event)"
-  (rowDataChanged)="autoSizeAll()"
+  (rowDataChanged)="autoSizeAll(false)"
   (rowClicked)="ouvrirRecette()"
 >
 </ag-grid-angular>
