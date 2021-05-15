@@ -20,12 +20,14 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
   resizeSubscription$: Subscription;
   columnDefs = [];
   mobileColumnDefs = [
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100}
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 500},
+    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 120},
+    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
   ];
   desktopColumnDefs = [
     {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 470},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 550},
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
@@ -63,7 +65,7 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       field: 'note',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter', width: 200,
+      filter: 'agTextColumnFilter', width: 100,
       valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
     },
   ];
@@ -126,20 +128,17 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.setMobileOrDesktopColumns();
-    // setTimeout(() => this.autoSizeAll(false), 0);
-
-    // this.autoSizeAll(false);
-
   }
 
   autoSizeAll(skipHeader): void {
-    // const allColumnIds = this?.gridColumnApi?.getAllColumns().map((column) => column.colId);
-    // this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
     // this.gridApi.sizeColumnsToFit(); // all column same size
-    // console.log('autosizeall');
-     // const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
-     // this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+    // const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
+    // this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+  }
 
+  autoColumnSizesWithButton(skipHeader): void {
+    const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
+    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
   }
 
   ouvrirRecette(): void {
