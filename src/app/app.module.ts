@@ -30,6 +30,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AgGridModule} from 'ag-grid-angular';
 import { DialogueRecetteComponent } from './liste-recettes/dialogue-recette/dialogue-recette.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DialogueRecetteMobileComponent } from './liste-recettes/dialogue-recette-mobile/dialogue-recette-mobile.component';
 
 
 
@@ -44,6 +45,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     LivreRecettesPageComponent,
     TestPageComponent,
     DialogueRecetteComponent,
+    DialogueRecetteMobileComponent,
   ],
   imports: [
     BrowserModule,

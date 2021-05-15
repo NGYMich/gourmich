@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {RecetteService} from '../services/RecetteService';
 import {Recette} from '../model/recette';
 import {DialogueRecetteComponent} from './dialogue-recette/dialogue-recette.component';
 import {MatDialog} from '@angular/material/dialog';
 import {fromEvent, Observable, Subscription} from 'rxjs';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {DialogueRecetteMobileComponent} from './dialogue-recette-mobile/dialogue-recette-mobile.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {DeviceDetectorService} from 'ngx-device-detector';
   templateUrl: './liste-recettes.component.html',
   styleUrls: ['./liste-recettes.component.css'],
 })
-export class ListeRecettesComponent implements OnInit {
+export class ListeRecettesComponent implements OnInit, OnDestroy {
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
   columnDefs = [
@@ -43,8 +44,6 @@ export class ListeRecettesComponent implements OnInit {
     },
   ];
   mobileColumnDefs = [
-    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'}
   ];
   desktopColumnDefs = [
@@ -87,6 +86,7 @@ export class ListeRecettesComponent implements OnInit {
   rowData: any;
   expandedElement: Recette | null;
   interval: any;
+  isMobile: boolean;
   private gridApi;
   private gridColumnApi;
 
@@ -94,15 +94,15 @@ export class ListeRecettesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isMobile = this.deviceService.isMobile();
     this.getListeRecettes();
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
-      console.log('resized');
-      // this.gridApi?.sizeColumnsToFit();
+      this.autoSizeAll();
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.resizeSubscription$.unsubscribe();
   }
 
@@ -123,7 +123,7 @@ export class ListeRecettesComponent implements OnInit {
     let newMinutes;
     let newHours;
     if (minutes < 60) {
-      return minutes + 'min';
+      return minutes === 0 ? minutes + ' min' : minutes + ' min';
     } else {
       newHours = Math.trunc(minutes / 60);
       newMinutes = minutes - newHours * 60;
@@ -146,23 +146,35 @@ export class ListeRecettesComponent implements OnInit {
   ouvrirRecette(): void {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data)[0];
-    const dialogRef = this.dialog.open(DialogueRecetteComponent, {
-      width: '100%',
-      height: '80%',
-      data: {recette: selectedData},
-      autoFocus: false,
-      panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
-    });
+
+    if (this.isMobile) {
+      const dialogRef = this.dialog.open(DialogueRecetteMobileComponent, {
+        width: '100%',
+        height: '80%',
+        data: {recette: selectedData},
+        autoFocus: false,
+        panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+      });
+    } else {
+      const dialogRef = this.dialog.open(DialogueRecetteComponent, {
+        width: '100%',
+        height: '80%',
+        data: {recette: selectedData},
+        autoFocus: false,
+        panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+      });
+    }
+
   }
 
   setMobileOrDesktopColumns(): void {
-    if (this.deviceService.isMobile()) {
+    if (this.isMobile) {
+      console.log('detected mobile');
       this.columnDefs = this.mobileColumnDefs;
-      const allColumnIds = this?.gridColumnApi?.getAllColumns().map((column) => column.colId);
-      this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
-      console.log('resize to mobile');
+
     } else {
       this.columnDefs = this.desktopColumnDefs;
+      this.gridApi.sizeColumnsToFit(); // all column same size
     }
   }
 }

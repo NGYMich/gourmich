@@ -1,16 +1,19 @@
 .example-card {
   max-width: 20%;
+  margin-left: 20%;
+  margin-right: 3%;
 }
 
 .example-header-image {
   background-image: url('https://i.imgur.com/dY3wBLY.jpg');
   background-size: cover;
   background-color: #f5f5f5;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-div{
-  height: 90%;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+
 }

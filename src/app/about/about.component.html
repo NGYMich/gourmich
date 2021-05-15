@@ -1,5 +1,4 @@
 <div class="main-div">
-
   <mat-card class="example-card">
     <mat-card-header>
       <div class="example-header-image" mat-card-avatar></div>
@@ -19,4 +18,26 @@
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card>
+  <div>
+    <h2>
+      TO DO LIST
+    </h2>
+    <mat-list>
+      <div mat-subheader>Algorithm</div>
+      <mat-list-item *ngFor="let algorithmSuggestion of algorithmSuggestions">
+        <mat-icon mat-list-icon>east</mat-icon>
+        <div mat-line>{{algorithmSuggestion}}</div>
+      </mat-list-item>
+
+
+     <mat-divider></mat-divider>
+      <div mat-subheader>Graphical</div>
+      <mat-list-item *ngFor="let graphicalSuggestion of graphicalSuggestions">
+        <mat-icon mat-list-icon>east</mat-icon>
+        <div mat-line>{{graphicalSuggestion}}</div>
+      </mat-list-item>
+    </mat-list>
+
+
+  </div>
 </div>
