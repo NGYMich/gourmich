@@ -16,33 +16,7 @@ import {DialogueRecetteMobileComponent} from './dialogue-recette-mobile/dialogue
 export class ListeRecettesComponent implements OnInit, OnDestroy {
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
-  columnDefs = [
-    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {
-      field: 'temps_preparation',
-      headerName: 'Temps de préparation',
-      sortable: true,
-      resizable: true,
-      filter: 'agTextColumnFilter'
-    },
-    {
-      field: 'temps_cuisson',
-      headerName: 'Temps de cuisson',
-      sortable: true,
-      resizable: true,
-      filter: 'agTextColumnFilter'
-    },
-    {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
-    {
-      field: 'note',
-      sortable: true,
-      resizable: true,
-      filter: 'agTextColumnFilter',
-      valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
-    },
-  ];
+  columnDefs = [];
   mobileColumnDefs = [
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'}
   ];
@@ -50,6 +24,14 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter'},
+    {field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', hide: true,
+      getQuickFilterText: params => {
+      let allIngredients = '';
+      for (let i = 0; i < params.value.length; i++) {
+          allIngredients = allIngredients + params.value[i].nom;
+        }
+      return allIngredients;
+      }},
     {
       field: 'temps_preparation',
       headerName: 'Temps de préparation',
