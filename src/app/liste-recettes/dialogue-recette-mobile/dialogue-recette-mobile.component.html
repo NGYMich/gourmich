@@ -1,6 +1,9 @@
 <div class="informations-random-recette-div">
-  <h1 style="font-size: 30px; text-align: left">{{recette.nom}}
-  </h1>
+  <div style="display:grid; grid-template-columns: 1fr auto;">
+    <h1>{{recette.nom}}</h1>
+    <h3>Temps total : {{recette.temps_total}}</h3>
+  </div>
+  <hr style="margin: 0">
 
   <p style="font-size: 15px;"> {{recette.description}}</p>
   <div class="ingredients-div">

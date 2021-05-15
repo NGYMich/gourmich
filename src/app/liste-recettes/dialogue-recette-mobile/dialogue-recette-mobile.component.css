@@ -1,0 +1,22 @@
+
+.ingredients-div {
+  padding: 0 0 16px 0;
+  min-width: 20%;
+  max-width: 100%;
+}
+
+.ingredients-div .ingredients-list {
+  text-align-all: center;
+  height: 100%;
+  min-height: 40px;
+}
+
+.etapes-div {
+  max-width: 100%;
+}
+
+.etapes-div .etapes-list {
+  height: 100%;
+  min-height: 50px;
+  max-height: 300px;
+}

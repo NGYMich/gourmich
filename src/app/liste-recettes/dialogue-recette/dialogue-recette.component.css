@@ -5,7 +5,7 @@
 .center-cropped {
   height: 700px;
   width: 30%;
-  border: solid;
+  border: solid 2px black;
   border-radius: 40px;
 
   float: left;
@@ -17,7 +17,7 @@
 
 .ingredients-div {
   padding: 0 0 16px 0;
-  min-width: 10%;
+  min-width: 20%;
   max-width: 30%;
   float: left;
 }
