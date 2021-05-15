@@ -19,17 +19,17 @@ export class RecetteService {
   constructor(private http: HttpClient) {
   }
 
-  // rootURL = 'https://easy-cook-back.herokuapp.com/api';
-  rootURL = 'http://localhost:8080/api';
+  rootURL = 'https://easy-cook-back.herokuapp.com/api';
+  // rootURL = 'http://localhost:8080/api';
+  // tslint:disable-next-line:variable-name
   private _deleteOperationSuccessfulEvent$: Subject<boolean> = new Subject();
 
-  getRecettes() {
+  getRecettes(): any {
     console.log(this.rootURL + '/recettes');
     return this.http.get(this.rootURL + '/recettes');
-    console.info(this.rootURL);
   }
 
-  addRecette(recette: Recette) {
+  addRecette(recette: Recette): any  {
     const body = JSON.stringify(recette);
     const headers = {'content-type': 'application/json'};
 
@@ -40,7 +40,7 @@ export class RecetteService {
     );
   }
 
-  deleteRecette(recette: Recette) {
+  deleteRecette(recette: Recette): any  {
     return this.http.delete(this.rootURL + '/recette/' + recette.recetteId).subscribe(data => {
       console.log(data);
       this._deleteOperationSuccessfulEvent$.next(true);

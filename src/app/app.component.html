@@ -10,5 +10,7 @@
     <button mat-button routerLink="/about">About</button>
     <!--  <button mat-button routerLink="/test">Test</button>-->
   </mat-toolbar>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>

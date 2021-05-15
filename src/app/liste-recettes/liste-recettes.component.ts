@@ -41,12 +41,7 @@ export class ListeRecettesComponent implements OnInit {
   gridOptions = {
     rowSelection: 'single',
     pagination: true,
-    sortable: true,
-    resizable: true,
-    flex: 1,
-    filter: true,
-    minWidth: 100,
-    paginationPageSize: 17,
+    paginationPageSize: 16,
     domLayout: 'autoHeight'
   };
   searchValue;
@@ -100,9 +95,9 @@ export class ListeRecettesComponent implements OnInit {
   }
 
   autoSizeAll(): void {
-    const allColumnIds = this.gridColumnApi.getAllColumns().map((column) => column.colId);
+    const allColumnIds = this?.gridColumnApi?.getAllColumns().map((column) => column.colId);
     // this.gridColumnApi.autoSizeAllColumns(allColumnIds); // adjust to data
-    this.gridApi.sizeColumnsToFit(); // all column same size
+    this?.gridApi?.sizeColumnsToFit(); // all column same size
   }
 
   ouvrirRecette(): void {
@@ -114,7 +109,7 @@ export class ListeRecettesComponent implements OnInit {
       height: '80%',
       data: {recette: selectedData},
       autoFocus: false,
-      panelClass: 'my-panel'
+      panelClass:  ['animate__animated', 'animate__zoomIn', 'my-panel']
     });
   }
 }

@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
-
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 html, body {
@@ -21,3 +20,13 @@ body {
 .my-panel .mat-dialog-container {
   border-radius: 30px;
 }
+.ag-row-selected {
+  background-color:aliceblue !important;
+}
+/* no cell select*/
+.ag-cell-focus,.ag-cell-no-focus{
+  border:none !important;
+  outline: none;
+}
+
+
