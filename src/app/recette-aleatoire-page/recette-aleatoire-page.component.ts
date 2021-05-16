@@ -19,11 +19,8 @@ export class RecetteAleatoirePageComponent implements OnInit {
   }
 
   showRandomRecette(): void {
-    console.log(this.listeRecettes);
     this.showRandomRecetteInfos = true;
     const randomInt = Math.floor(Math.random() * Math.floor(this.listeRecettes.length));
-    console.log(randomInt);
-    console.log(this.listeRecettes[randomInt]);
     this.selectedRandomRecette = this.listeRecettes[randomInt];
   }
 

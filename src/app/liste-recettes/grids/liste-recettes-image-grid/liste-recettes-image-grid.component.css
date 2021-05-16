@@ -12,7 +12,6 @@
 }
 
 .column img {
-  margin-top: 15px;
   vertical-align: middle;
   width: 100%;
 }
@@ -31,4 +30,12 @@
     flex: 100%;
     max-width: 100%;
   }
+}
+
+h2 {
+  font-family: "Perpetua";
+  font-style: italic;
+  /*font-weight: bold;*/
+  /*font-family: Didot;*/
+  font-size: 28px;
 }

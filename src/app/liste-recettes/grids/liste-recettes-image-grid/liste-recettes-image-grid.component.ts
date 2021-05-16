@@ -16,7 +16,6 @@ export class ListeRecettesImageGridComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log('data:' + this.rowData);
   }
 
   ouvrirRecette(recette): void {
