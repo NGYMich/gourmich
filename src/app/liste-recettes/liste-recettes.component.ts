@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RecetteService} from '../services/RecetteService';
-import {Recette} from '../model/recette';
 import {DialogueRecetteComponent} from './dialogue-recette/dialogue-recette.component';
 import {MatDialog} from '@angular/material/dialog';
 import {fromEvent, Observable, Subscription} from 'rxjs';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {DialogueRecetteMobileComponent} from './dialogue-recette-mobile/dialogue-recette-mobile.component';
 import {isNumeric} from 'rxjs/internal-compatibility';
-import {FirstDataRenderedEvent} from 'ag-grid-community';
 
 
 @Component({
@@ -20,22 +18,44 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
   resizeSubscription$: Subscription;
   columnDefs = [];
   mobileColumnDefs = [
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 500},
-    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 120},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 600},
+    {
+      field: 'categorie',
+      headerName: 'Catégorie',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 120
+    },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
   ];
   desktopColumnDefs = [
-    {field: 'categorie', headerName: 'Catégorie', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
+    {
+      field: 'categorie',
+      headerName: 'Catégorie',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 200
+    },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 550},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 780},
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter', width: 150,
+      width: 100,
+      cellStyle: {textAlign: 'center'}
     },
-    {field: 'difficulte', headerName: 'Difficulté', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
+    {
+      field: 'difficulte',
+      headerName: 'Difficulté',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 110
+    },
     {
       field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100, hide: true,
       getQuickFilterText: params => {
@@ -51,21 +71,30 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       headerName: 'Temps de préparation',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter', width: 200
+      width: 170,
+      cellStyle: {textAlign: 'center'}
     },
     {
       field: 'temps_cuisson',
       headerName: 'Temps de cuisson',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter', width: 175
+      width: 145,
+      cellStyle: {textAlign: 'center'}
     },
-    {field: 'temps_total', headerName: 'Temps total', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
+    {
+      field: 'temps_total',
+      headerName: 'Temps total',
+      sortable: true,
+      resizable: true,
+      width: 110,
+      cellStyle: {textAlign: 'center'}
+    },
     {
       field: 'note',
       sortable: true,
       resizable: true,
-      filter: 'agTextColumnFilter', width: 100,
+      width: 75,
       valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
     },
   ];
@@ -103,7 +132,7 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.recetteService.getRecettes().subscribe(data => {
       this.newData = data;
       this.newData.forEach(recette => {
-        recette.temps_total = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
+        recette.temps_total = isNumeric(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
         recette.temps_cuisson = isNumeric(recette.temps_cuisson) ? this.minToHours(Number(recette.temps_cuisson)) : recette.temps_cuisson;
         recette.temps_preparation = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation)) : recette.temps_preparation;
       });

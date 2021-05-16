@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Recette} from '../model/recette';
 import {RecetteService} from '../services/RecetteService';
 import {Subscription} from 'rxjs';
@@ -95,13 +95,14 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       auteur: new FormControl(''),
       categorie: new FormControl(''),
       difficulte: new FormControl(''),
-      nb_personnes: new FormControl(''),
+      nb_personnes: new FormControl('', Validators.pattern('^[0-9]*$')),
       description: new FormControl(''),
       lien_image: new FormControl(''),
       lien_video: new FormControl(''),
       temps_preparation: new FormControl(''),
       temps_cuisson: new FormControl(''),
-      note: new FormControl(''),
+      note: new FormControl('', Validators.pattern('^[0-9]*$'),
+      ),
     });
 
     this.modifyIngredientForm = this.formBuilder.group({
@@ -117,13 +118,14 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       auteur: new FormControl(''),
       categorie: new FormControl(''),
       difficulte: new FormControl(''),
-      nb_personnes: new FormControl(''),
+      nb_personnes: new FormControl('', Validators.pattern('^[0-9]*$')),
       description: new FormControl(''),
       lien_image: new FormControl(''),
       lien_video: new FormControl(''),
       temps_preparation: new FormControl(''),
       temps_cuisson: new FormControl(''),
-      note: new FormControl(''),
+      note: new FormControl('', Validators.pattern('^[0-9]*$'),
+      ),
     });
     this.getListeRecettes();
     this.deleteOperationSuccessfulSubscription = this.recetteService.deleteOperationSuccessfulEvent$.subscribe();
@@ -177,6 +179,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.isSelectedRecette = false;
     this.isRecetteModifiee = false;
   }
+
   showModifyRecetteDiv(): void {
     this.addRecipeFormIsShown = false;
     this.deleteRecipeFormIsShown = false;
@@ -252,7 +255,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.isSelectedRecette = true;
     // modifier les ingrédients
     this.modifyIngredients.clear();
-    for(let i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
+    for (let i = 0; i < this.selectedRecetteToModify.liste_ingredients.length; i++) {
       this.modifyIngredients.push(this.formBuilder.group({
         nom: this.selectedRecetteToModify.liste_ingredients[i].nom,
         quantite: this.selectedRecetteToModify.liste_ingredients[i].quantite
@@ -260,7 +263,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     }
     // modifier les étapes
     this.modifyEtapes.clear();
-    for(let i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
+    for (let i = 0; i < this.selectedRecetteToModify.liste_etapes.length; i++) {
       this.modifyEtapes.push(this.formBuilder.group({nom_etape: this.selectedRecetteToModify.liste_etapes[i]}));
     }
 
@@ -286,11 +289,11 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     this.recetteService.getRecettes().subscribe(data => {
       this.listeRecettes = data;
       // console.log(this.listeRecettes);
-/*      this.listeRecettes.forEach(recette => {
-        recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
-        recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
-        recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
-      })*/
+      /*      this.listeRecettes.forEach(recette => {
+              recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
+              recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
+              recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
+            })*/
     });
   }
 

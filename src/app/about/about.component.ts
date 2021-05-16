@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  algorithmSuggestions: string[] = ['Add mobile support', 'Add authentification / user management', 'In Livre Recettes, show recipe when its image is clicked'];
+  algorithmSuggestions: string[] = ['Add mobile support', 'Add authentification / user management', 'In Livre Recettes, show recipe when its image is clicked', 'Add recipe validations', 'Add stars for note', 'Add sous-catégorie'];
   graphicalSuggestions: string[] = ['Add animations', 'Change fonts', 'Add background', 'Add banner'];
 
 
