@@ -205,7 +205,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   addRecette(): void {
     const etapesArray = this.etapes.value.map(etape => etape.nom_etape);
     const ingredientsArray = null;
-    const newNote = this.informationsForm.get('note').value == '' ? '?' : this.informationsForm.get('note').value;
+    const newNote = this.informationsForm.get('note').value === '' ? '?' : this.informationsForm.get('note').value;
     console.log(this.informationsForm.get('note').value);
     const recette: Recette = {
       recetteId: null,
@@ -240,6 +240,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       recetteId: this.selectedRecetteToModify.recetteId,
       categorie: this.modifyInformationsForm.get('categorie').value,
       sous_categorie: this.modifyInformationsForm.get('sous_categorie').value,
+      cout_recette: this.modifyInformationsForm.get('sous_categorie').value,
       difficulte: this.modifyInformationsForm.get('difficulte').value,
       nb_personnes: this.modifyInformationsForm.get('nb_personnes').value,
       auteur: this.modifyInformationsForm.get('auteur').value,
