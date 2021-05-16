@@ -74,7 +74,8 @@ export class TestPageComponent implements OnInit {
       this.hasDataLoaded = true;
       this.newData = data;
       this.newData.forEach(recette => {
-        recette.temps_total = this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson));
+        // tslint:disable-next-line:max-line-length
+        recette.temps_total = (recette.temps_cuisson === null && recette.temps_preparation === null) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : null;
         recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
         recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
       });

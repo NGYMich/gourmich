@@ -1,6 +1,7 @@
-<mat-spinner *ngIf="!hasDataLoaded;"></mat-spinner>
+<!--<mat-spinner *ngIf="!hasDataLoaded;"></mat-spinner>-->
 
 <div class="center-div" *ngIf="hasDataLoaded;">
-  <ngx-gallery (previewOpen)="openPreview(0)" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-
+<!--  <button (click)="gallery.showPrev()" [disabled]="!gallery.canShowPrev()">Show Prev</button>-->
+<!--  <button (click)="gallery.showNext()" [disabled]="!gallery.canShowNext()">Show Next</button>-->
+  <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery" #carousel></ngx-gallery>
 </div>

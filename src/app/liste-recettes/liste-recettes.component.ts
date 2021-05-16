@@ -149,7 +149,9 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.recetteService.getRecettes().subscribe(data => {
       this.newData = data;
       this.newData.forEach(recette => {
-        recette.temps_total = isNumeric(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
+        if (recette.temps_cuisson !== '' && recette.temps_preparation !== '') {
+          recette.temps_total = isNumeric(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
+        }
         recette.temps_cuisson = isNumeric(recette.temps_cuisson) ? this.minToHours(Number(recette.temps_cuisson)) : recette.temps_cuisson;
         recette.temps_preparation = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation)) : recette.temps_preparation;
       });

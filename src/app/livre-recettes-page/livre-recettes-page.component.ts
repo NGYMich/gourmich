@@ -1,14 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RecetteService} from '../services/RecetteService';
-import {
-  NgxGalleryOptions,
-  NgxGalleryImage,
-  NgxGalleryAnimation,
-  NgxGalleryAction,
-  NgxGalleryComponent
-} from 'ngx-gallery-9';
-import {MatDialog} from "@angular/material/dialog";
-import {DialogueRecetteComponent} from "../liste-recettes/dialogue-recette/dialogue-recette.component";
+import {NgxGalleryArrowsComponent, NgxGalleryComponent, NgxGalleryImage, NgxGalleryOptions} from 'ngx-gallery-9';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogueRecetteComponent} from '../liste-recettes/dialogue-recette/dialogue-recette.component';
 
 
 @Component({
@@ -19,17 +13,18 @@ import {DialogueRecetteComponent} from "../liste-recettes/dialogue-recette/dialo
 export class LivreRecettesPageComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  @ViewChild(NgxGalleryComponent) gallery: NgxGalleryComponent;
+  @ViewChild(NgxGalleryArrowsComponent) arrows: NgxGalleryArrowsComponent;
+
   selectedRecette;
-
-  @ViewChild('onlyPreviewGallery') onlyPreviewGallery: NgxGalleryComponent;
-
   tabLienImages = [];
   tabNgxGalleryImages = [];
-  tabNgxGalleryActions = [];
   recettes;
   hasDataLoaded = false;
 
-  constructor(private recetteService: RecetteService,  public dialog: MatDialog) {
+
+
+  constructor(private recetteService: RecetteService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -54,25 +49,31 @@ export class LivreRecettesPageComponent implements OnInit {
         fullWidth: true,
         breakpoint: 5000,
         width: '100%',
-        height: '820px',
+        height: '830px',
         thumbnailsMoveSize: 4,
-        actions: this.tabNgxGalleryActions
+        // arrowPrevIcon: false,
+        // arrowNextIcon: false
+      },
+      {
+      },
+      {
+        previewCustom: (index) => {
+          this.selectedRecette = this.recettes[index];
+          const dialogRef = this.dialog.open(DialogueRecetteComponent, {
+            width: '100%',
+            height: '80%',
+            data: {recette: this.selectedRecette},
+            autoFocus: false,
+            panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+          });
+          // this.dialog.closeAll();
+          // this.gallery.image.showNext();
+          // this.arrows.onNextClick
+        },
+        imageArrowsAutoHide: true,
       },
     ];
   }
 
-  openPreview(index: number): void {
-    this.onlyPreviewGallery.openPreview(index);
-  }
-
-/*    this.selectedRecette = this.recettes[index];
-    const dialogRef = this.dialog.open(DialogueRecetteComponent, {
-      width: '100%',
-      height: '80%',
-      data: {recette: this.selectedRecette},
-      autoFocus: false,
-      panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
-    });
-  }*/
 
 }
