@@ -42,9 +42,12 @@ h3 {
   width: 40%;
 }
 
+.sous-categorie-form-field {
+  width: 50%;
+}
+
 .difficulte-form-field {
   width: 40%;
-  margin-left: 19%;
 }
 
 

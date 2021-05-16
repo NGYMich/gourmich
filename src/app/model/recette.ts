@@ -2,6 +2,8 @@ export class Recette {
   recetteId: string;
   nb_personnes: number;
   categorie: string;
+  sous_categorie: string;
+  cout_recette: string;
   difficulte: string;
   auteur: string;
   nom: string;

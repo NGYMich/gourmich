@@ -48,6 +48,12 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field appearance="legacy" class="sous-categorie-form-field" style="margin-left: 10%">
+        <mat-label>Sous Catégorie</mat-label>
+        <input formControlName="sous_categorie" matInput>
+      </mat-form-field>
+      <br>
+
       <mat-form-field appearance="legacy" class="difficulte-form-field">
         <mat-label>Difficulté</mat-label>
         <mat-select [(value)]="selectedDifficulte"
@@ -72,7 +78,16 @@
         <mat-label>Lien image</mat-label>
         <input formControlName="lien_image" matInput>
       </mat-form-field>
+
+
       <br>
+      <mat-form-field appearance="legacy">
+        <mat-label>Coût de la recette</mat-label>
+        <input formControlName="cout_recette" matInput>
+      </mat-form-field>
+      <br>
+
+
 
       <mat-form-field appearance="legacy">
         <mat-label>Lien vidéo</mat-label>
@@ -236,6 +251,13 @@
             <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="sous-categorie-form-field" style="margin-left: 10%">
+          <mat-label>Sous Catégorie</mat-label>
+          <input [(ngModel)]="selectedRecetteToModify.sous_categorie" formControlName="sous_categorie" matInput>
+        </mat-form-field>
+        <br>
+
 
         <mat-form-field appearance="legacy" class="difficulte-form-field">
           <mat-label>Difficulté</mat-label>

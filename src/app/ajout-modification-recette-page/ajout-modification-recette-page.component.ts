@@ -36,6 +36,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
   selectedRecetteToModify = {
     recetteId: '',
     categorie: '',
+    sous_categorie: '',
+    cout_recette: '',
     difficulte: '',
     nb_personnes: '',
     auteur: '',
@@ -94,6 +96,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       nom: new FormControl(''),
       auteur: new FormControl(''),
       categorie: new FormControl(''),
+      sous_categorie: new FormControl(''),
+      cout_recette: new FormControl(''),
       difficulte: new FormControl(''),
       nb_personnes: new FormControl('', Validators.pattern('^[0-9]*$')),
       description: new FormControl(''),
@@ -117,6 +121,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       nom: new FormControl(''),
       auteur: new FormControl(''),
       categorie: new FormControl(''),
+      sous_categorie: new FormControl(''),
+      cout_recette: new FormControl(''),
       difficulte: new FormControl(''),
       nb_personnes: new FormControl('', Validators.pattern('^[0-9]*$')),
       description: new FormControl(''),
@@ -204,6 +210,8 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     const recette: Recette = {
       recetteId: null,
       categorie: this.informationsForm.get('categorie').value,
+      sous_categorie: this.informationsForm.get('sous_categorie').value,
+      cout_recette: this.informationsForm.get('cout_recette').value,
       difficulte: this.informationsForm.get('difficulte').value,
       nb_personnes: this.informationsForm.get('nb_personnes').value,
       auteur: this.informationsForm.get('auteur').value,
@@ -231,6 +239,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     const modifiedRecette: Recette = {
       recetteId: this.selectedRecetteToModify.recetteId,
       categorie: this.modifyInformationsForm.get('categorie').value,
+      sous_categorie: this.modifyInformationsForm.get('sous_categorie').value,
       difficulte: this.modifyInformationsForm.get('difficulte').value,
       nb_personnes: this.modifyInformationsForm.get('nb_personnes').value,
       auteur: this.modifyInformationsForm.get('auteur').value,

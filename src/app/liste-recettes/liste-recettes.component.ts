@@ -38,15 +38,32 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       filter: 'agTextColumnFilter',
       width: 200
     },
+    {
+      field: 'sous_categorie',
+      headerName: 'Sous catégorie',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 200
+    },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 780},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 580},
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
       sortable: true,
       resizable: true,
       width: 100,
+      hide: true,
       cellStyle: {textAlign: 'center'}
+    },
+    {
+      field: 'cout_recette',
+      headerName: 'Coût',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 100
     },
     {
       field: 'difficulte',
