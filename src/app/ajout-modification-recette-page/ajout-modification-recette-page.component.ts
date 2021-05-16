@@ -323,7 +323,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
 
   hasAdminRights($event): void {
     this.adminPassword = ($event.target as HTMLInputElement).value;
-    this.isAdmin = this.adminPassword === 'admin' ? true : false;
+    this.isAdmin = this.adminPassword === '123' ? true : false;
     console.log(this.isAdmin);
   }
 }

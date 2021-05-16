@@ -38,3 +38,8 @@
   min-height: 50px;
   max-height: 300px;
 }
+
+h1 span {
+  font-size: 15px;
+  font-style: italic;
+}

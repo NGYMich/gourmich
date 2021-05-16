@@ -47,7 +47,7 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       width: 200
     },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 580},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 550, sort: 'asc'},
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
@@ -111,14 +111,14 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       field: 'note',
       sortable: true,
       resizable: true,
-      width: 75,
-      valueFormatter: params => params.value === '?' ? '' : params.value + '/10'
+      width: 85,
+      valueFormatter: params => params.value === '?' ? '' : params.value + '/20'
     },
   ];
   gridOptions = {
     rowSelection: 'single',
     pagination: true,
-    paginationPageSize: 16,
+    paginationPageSize: 30,
     domLayout: 'autoHeight'
   };
 

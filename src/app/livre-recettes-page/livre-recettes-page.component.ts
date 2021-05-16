@@ -1,7 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {RecetteService} from "../services/RecetteService";
-import {Recette} from "../model/recette";
-import {NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation} from 'ngx-gallery-9';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {RecetteService} from '../services/RecetteService';
+import {
+  NgxGalleryOptions,
+  NgxGalleryImage,
+  NgxGalleryAnimation,
+  NgxGalleryAction,
+  NgxGalleryComponent
+} from 'ngx-gallery-9';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogueRecetteComponent} from "../liste-recettes/dialogue-recette/dialogue-recette.component";
 
 
 @Component({
@@ -12,45 +19,60 @@ import {NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation} from 'ngx-galle
 export class LivreRecettesPageComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  selectedRecette;
+
+  @ViewChild('onlyPreviewGallery') onlyPreviewGallery: NgxGalleryComponent;
+
   tabLienImages = [];
   tabNgxGalleryImages = [];
-  dataSource;
+  tabNgxGalleryActions = [];
+  recettes;
   hasDataLoaded = false;
 
-  constructor(private recetteService: RecetteService) {
+  constructor(private recetteService: RecetteService,  public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.recetteService.getRecettes().subscribe(data => {
-      this.dataSource = data;
-      console.log(this.dataSource);
-      this.tabLienImages = this.dataSource.map(({lien_image}) => lien_image);
-      for (let i = 0; i < this.tabLienImages.length; i++) {
+      this.recettes = data;
+      console.log(this.recettes);
+      this.tabLienImages = this.recettes.map(({lien_image}) => lien_image);
+      for (const tabLienImage of this.tabLienImages) {
         this.tabNgxGalleryImages.push({
-          small: this.tabLienImages[i],
-          medium: this.tabLienImages[i],
-          big: this.tabLienImages[i]
-        })
+          small: tabLienImage,
+          medium: tabLienImage,
+          big: tabLienImage
+        });
       }
       this.galleryImages = this.tabNgxGalleryImages;
       this.hasDataLoaded = true;
-    })
-
-    //this.galleryImages = this.dataSource.lien_image;
-
+    });
 
     this.galleryOptions = [
       {
         imageSize: 'contain',
         fullWidth: true,
-        breakpoint: 5000
-      },
-      {
+        breakpoint: 5000,
         width: '100%',
-        height: '820px'
-      }
+        height: '820px',
+        thumbnailsMoveSize: 4,
+        actions: this.tabNgxGalleryActions
+      },
     ];
-
   }
+
+  openPreview(index: number): void {
+    this.onlyPreviewGallery.openPreview(index);
+  }
+
+/*    this.selectedRecette = this.recettes[index];
+    const dialogRef = this.dialog.open(DialogueRecetteComponent, {
+      width: '100%',
+      height: '80%',
+      data: {recette: this.selectedRecette},
+      autoFocus: false,
+      panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+    });
+  }*/
 
 }
