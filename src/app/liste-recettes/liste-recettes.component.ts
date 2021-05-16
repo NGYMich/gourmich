@@ -17,8 +17,8 @@ import {ImageFormatterComponent} from './ImageFormatterComponent';
 export class ListeRecettesComponent implements OnInit, OnDestroy {
 
   detailedGridChosen = false;
-  imageGridChosen = true;
-  vignetteGridChosen = false;
+  imageGridChosen = false;
+  vignetteGridChosen = true;
 
   searchValue;
   newData;

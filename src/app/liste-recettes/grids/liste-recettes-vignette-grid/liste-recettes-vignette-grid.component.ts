@@ -26,7 +26,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: 'agTextColumnFilter',
-      width: 120
+      width: 120,
     },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
   ];
@@ -36,7 +36,6 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       field: 'lien_image',
       width: 240,
       sortable: false,
-      autoHeight: true,
       resizable: true,
       cellRendererFramework: ImageFormatterComponent
     },
@@ -46,7 +45,8 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: 'agTextColumnFilter',
-      width: 200
+      width: 120,
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
     },
     {
       field: 'sous_categorie',
@@ -54,10 +54,16 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: 'agTextColumnFilter',
-      width: 200
+      width: 200,
+      hide: true,
+      cellStyle: {'vertical-align': 'middle'}
     },
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 450, sort: 'asc'},
+    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 130,
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+    },
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 300, sort: 'asc',
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+    },
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
@@ -74,6 +80,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       resizable: true,
       filter: 'agTextColumnFilter',
       width: 165,
+      hide: true,
       cellStyle: {textAlign: 'center'}
     },
     {
@@ -82,7 +89,8 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: 'agTextColumnFilter',
-      width: 110
+      width: 110,
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
     },
     {
       field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100, hide: true,
@@ -100,6 +108,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       width: 170,
+      hide: true,
       cellStyle: {textAlign: 'center'}
     },
     {
@@ -108,6 +117,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       width: 145,
+      hide: true,
       cellStyle: {textAlign: 'center'}
     },
     {
@@ -116,6 +126,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       width: 110,
+      hide: true,
       cellStyle: {textAlign: 'center'}
     },
     {
@@ -123,14 +134,25 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       sortable: true,
       resizable: true,
       width: 85,
+      hide: true,
       valueFormatter: params => params.value === '?' ? '' : params.value + '/20'
     },
+    {
+      field: 'description',
+      headerName: 'Description',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 950,
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+    }
   ];
   gridOptions = {
     rowSelection: 'single',
     pagination: true,
     paginationPageSize: 30,
-    domLayout: 'autoHeight'
+    domLayout: 'autoHeight',
+    rowHeight: 250
   };
 
   searchValue;
@@ -220,7 +242,6 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
         panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
       });
     }
-
   }
 
   setMobileOrDesktopColumns(): void {
