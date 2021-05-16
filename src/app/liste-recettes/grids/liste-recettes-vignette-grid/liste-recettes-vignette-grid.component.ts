@@ -152,7 +152,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
     pagination: true,
     paginationPageSize: 30,
     domLayout: 'autoHeight',
-    rowHeight: 250
+    rowHeight: 303
   };
 
   searchValue;
