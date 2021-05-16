@@ -191,13 +191,13 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
 
   ouvrirRecette(): void {
     const selectedNodes = this.gridApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data)[0];
+    const selectedRecette = selectedNodes.map(node => node.data)[0];
 
     if (this.isMobile) {
       const dialogRef = this.dialog.open(DialogueRecetteMobileComponent, {
         width: '100%',
         height: '80%',
-        data: {recette: selectedData},
+        data: {recette: selectedRecette},
         autoFocus: false,
         panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
       });
@@ -205,7 +205,7 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       const dialogRef = this.dialog.open(DialogueRecetteComponent, {
         width: '100%',
         height: '80%',
-        data: {recette: selectedData},
+        data: {recette: selectedRecette},
         autoFocus: false,
         panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
       });

@@ -3,6 +3,8 @@ import {RecetteService} from '../services/RecetteService';
 import {NgxGalleryArrowsComponent, NgxGalleryComponent, NgxGalleryImage, NgxGalleryOptions} from 'ngx-gallery-9';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogueRecetteComponent} from '../liste-recettes/dialogue-recette/dialogue-recette.component';
+import {DeviceDetectorService} from "ngx-device-detector";
+import {DialogueRecetteMobileComponent} from "../liste-recettes/dialogue-recette-mobile/dialogue-recette-mobile.component";
 
 
 @Component({
@@ -21,13 +23,14 @@ export class LivreRecettesPageComponent implements OnInit {
   tabNgxGalleryImages = [];
   recettes;
   hasDataLoaded = false;
+  isMobile: boolean;
 
 
-
-  constructor(private recetteService: RecetteService, public dialog: MatDialog) {
+  constructor(private recetteService: RecetteService, public dialog: MatDialog, private deviceService: DeviceDetectorService) {
   }
 
   ngOnInit(): void {
+    this.isMobile = this.deviceService.isMobile();
     this.recetteService.getRecettes().subscribe(data => {
       this.recettes = data;
       console.log(this.recettes);
@@ -51,21 +54,27 @@ export class LivreRecettesPageComponent implements OnInit {
         width: '100%',
         height: '830px',
         thumbnailsMoveSize: 4,
-        // arrowPrevIcon: false,
-        // arrowNextIcon: false
-      },
-      {
       },
       {
         previewCustom: (index) => {
           this.selectedRecette = this.recettes[index];
-          const dialogRef = this.dialog.open(DialogueRecetteComponent, {
-            width: '100%',
-            height: '80%',
-            data: {recette: this.selectedRecette},
-            autoFocus: false,
-            panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
-          });
+          if (this.isMobile) {
+            const dialogRef = this.dialog.open(DialogueRecetteMobileComponent, {
+              width: '100%',
+              height: '80%',
+              data: {recette: this.selectedRecette},
+              autoFocus: false,
+              panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+            });
+          } else {
+            const dialogRef = this.dialog.open(DialogueRecetteComponent, {
+              width: '100%',
+              height: '80%',
+              data: {recette: this.selectedRecette},
+              autoFocus: false,
+              panelClass: ['animate__animated', 'animate__zoomIn__fast', 'my-panel']
+            });
+          }
           // this.dialog.closeAll();
           // this.gallery.image.showNext();
           // this.arrows.onNextClick
