@@ -31,6 +31,10 @@ import {AgGridModule} from 'ag-grid-angular';
 import { DialogueRecetteComponent } from './liste-recettes/dialogue-recette/dialogue-recette.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogueRecetteMobileComponent } from './liste-recettes/dialogue-recette-mobile/dialogue-recette-mobile.component';
+import {ImageFormatterComponent} from './liste-recettes/ImageFormatterComponent';
+import { ListeRecettesDetailedGridComponent } from './liste-recettes/grids/liste-recettes-detailed-grid/liste-recettes-detailed-grid.component';
+import { ListeRecettesVignetteGridComponent } from './liste-recettes/grids/liste-recettes-vignette-grid/liste-recettes-vignette-grid.component';
+import { ListeRecettesImageGridComponent } from './liste-recettes/grids/liste-recettes-image-grid/liste-recettes-image-grid.component';
 
 
 
@@ -46,6 +50,10 @@ import { DialogueRecetteMobileComponent } from './liste-recettes/dialogue-recett
     TestPageComponent,
     DialogueRecetteComponent,
     DialogueRecetteMobileComponent,
+    ImageFormatterComponent,
+    ListeRecettesDetailedGridComponent,
+    ListeRecettesVignetteGridComponent,
+    ListeRecettesImageGridComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +80,7 @@ import { DialogueRecetteMobileComponent } from './liste-recettes/dialogue-recett
     MatDividerModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([ImageFormatterComponent])
   ],
   providers: [],
   bootstrap: [AppComponent]

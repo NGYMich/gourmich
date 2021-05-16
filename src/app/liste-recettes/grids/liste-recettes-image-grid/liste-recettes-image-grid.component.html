@@ -1,0 +1,5 @@
+<div class="row" style="margin-left: 0.5%; margin-right: 0.5%;">
+  <div *ngFor="let recette of rowData" class="column">
+    <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}} style="width: 450px; height: 600px; cursor: pointer">
+  </div>
+</div>

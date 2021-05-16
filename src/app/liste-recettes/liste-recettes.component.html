@@ -2,6 +2,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 </header>
 
+<!--
 <mat-form-field>
   <mat-label wid>Filtre de recherche</mat-label>
   <input width="30%" matInput type="text"
@@ -9,18 +10,15 @@
 </mat-form-field>
 <button *ngIf="isMobile" mat-button style="margin-left: 0.5%; margin-top: 0px;" (click)="autoColumnSizesWithButton(false)">Réduire la taille des colonnes</button>
 <button *ngIf="!isMobile" mat-button style="float:right; margin-right: 1%" (click)="autoColumnSizesWithButton(false)">Réduire la taille des colonnes</button>
+-->
+<div style="margin-left: 0.05%;">
+  <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('images')">Images</button>
+  <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('vignette')">Vignette</button>
+  <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('details')">Details</button>
+</div>
 
 
+<app-liste-recettes-detailed-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData" *ngIf="detailedGridChosen"></app-liste-recettes-detailed-grid>
+<app-liste-recettes-vignette-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData"*ngIf="vignetteGridChosen"></app-liste-recettes-vignette-grid>
+<app-liste-recettes-image-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData" *ngIf="imageGridChosen"></app-liste-recettes-image-grid>
 
-<ag-grid-angular
-  style="width: 100%; height: 100%;"
-  class="ag-theme-alpine"
-  [rowData]="rowData"
-  [columnDefs]="columnDefs"
-  [gridOptions]="gridOptions"
-  [quickFilterText]="searchValue"
-  (gridReady)="onGridReady($event)"
-  (rowDataChanged)="autoSizeAll(false)"
-  (rowClicked)="ouvrirRecette($event)"
->
-</ag-grid-angular>
