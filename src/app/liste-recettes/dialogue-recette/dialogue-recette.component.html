@@ -4,7 +4,8 @@
 
 <div class="informations-random-recette-div">
   <div style="display:grid; grid-template-columns: 1fr auto;">
-    <h1>{{recette.nom}} <span>({{recette.nb_personnes}} {{recette.nb_personnes <= 1 ? 'personne' : 'personnes'}})</span></h1>
+    <h1>{{recette.nom}} <span>({{recette.nb_personnes}} {{recette.nb_personnes <= 1 ? 'personne' : 'personnes'}})</span>
+    </h1>
     <h3 style="font-style: italic">
       {{recette.difficulte ? recette.difficulte : ''}}
       {{recette.temps_total ? ' - ' + recette.temps_total : ''}}
@@ -36,3 +37,4 @@
     </mat-list>
   </div>
 </div>
+

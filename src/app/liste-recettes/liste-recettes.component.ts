@@ -47,7 +47,7 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
       width: 200
     },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 550, sort: 'asc'},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 450, sort: 'asc'},
     {
       field: 'nb_personnes',
       headerName: 'Personnes',
@@ -59,11 +59,12 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     },
     {
       field: 'cout_recette',
-      headerName: 'Coût',
+      headerName: 'Coût par personne ',
       sortable: true,
       resizable: true,
       filter: 'agTextColumnFilter',
-      width: 100
+      width: 165,
+      cellStyle: {textAlign: 'center'}
     },
     {
       field: 'difficulte',
@@ -189,10 +190,9 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
     this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
   }
 
-  ouvrirRecette(): void {
+  ouvrirRecette(event): void {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedRecette = selectedNodes.map(node => node.data)[0];
-
     if (this.isMobile) {
       const dialogRef = this.dialog.open(DialogueRecetteMobileComponent, {
         width: '100%',

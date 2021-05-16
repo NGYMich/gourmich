@@ -14,5 +14,4 @@ export class DialogueRecetteComponent implements OnInit {
     this.recette = this.recette.recette;
     console.log(this.recette);
   }
-
 }
