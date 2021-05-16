@@ -118,7 +118,7 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
   gridOptions = {
     rowSelection: 'single',
     pagination: true,
-    paginationPageSize: 30,
+    paginationPageSize: 20,
     domLayout: 'autoHeight'
   };
 
