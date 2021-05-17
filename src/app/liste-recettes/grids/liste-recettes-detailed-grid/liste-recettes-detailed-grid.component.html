@@ -4,11 +4,13 @@
 
 <mat-form-field>
   <mat-label wid>Filtre de recherche</mat-label>
-  <input width="30%" matInput type="text"
-         [(ngModel)]="searchValue"/>
+  <input (keyup.enter)="resetFilter()" width="30%" matInput type="text"
+         [(ngModel)]="filtre"/>
 </mat-form-field>
+
+<button mat-button (click)="resetFilter()">Annuler le filtre</button>
 <button *ngIf="isMobile" mat-button style="margin-left: 0.5%; margin-top: 0px;" (click)="autoColumnSizesWithButton(false)">Ajuster la taille des colonnes</button>
-<button *ngIf="!isMobile" mat-button style="float:right; margin-right: 1%" (click)="autoColumnSizesWithButton(false)">Ajuster la taille des colonnes</button>
+<button *ngIf="!isMobile" mat-button style="float:right; margin-right: 1%; margin-top: 18px;" (click)="autoColumnSizesWithButton(false)">Ajuster la taille des colonnes</button>
 
 
 
@@ -18,7 +20,7 @@
   [rowData]="rowData"
   [columnDefs]="columnDefs"
   [gridOptions]="gridOptions"
-  [quickFilterText]="searchValue"
+  [quickFilterText]="filtre"
   (gridReady)="onGridReady($event)"
   (rowDataChanged)="autoSizeAll(false)"
   (rowClicked)="ouvrirRecette($event)"

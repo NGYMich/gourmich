@@ -4,7 +4,7 @@
 
 <mat-form-field>
   <mat-label wid>Filtre de recherche</mat-label>
-  <input (keyup)="filtrerRecette(filtre, false)" (keydown.enter)="filtrerRecette(filtre, false)" width="30%" matInput type="text"
+  <input (keyup)="filtrerRecette(filtre, false)" (keydown.enter)="filtrerRecette(filtre, true)" width="30%" matInput type="text"
          [(ngModel)]="filtre"/>
 </mat-form-field>
 <!--<button mat-button (click)="filtrerRecette(filtre, false)">Filtrer les recettes</button>-->

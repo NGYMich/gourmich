@@ -187,4 +187,8 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
       this.columnDefs = this.desktopColumnDefs;
     }
   }
+
+  resetFilter(): void {
+    this.filtre = '';
+  }
 }

@@ -155,7 +155,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
     rowHeight: 304
   };
 
-  searchValue;
+  filtre;
   @Input() rowData: any;
   @Input() isMobile: boolean;
   private gridApi;
@@ -220,4 +220,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
     }
   }
 
+  resetFilter(): void {
+    this.filtre = '';
+  }
 }
