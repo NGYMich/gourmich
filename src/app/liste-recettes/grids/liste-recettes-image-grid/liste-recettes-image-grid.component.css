@@ -5,36 +5,63 @@
 }
 
 /* Create four equal columns that sits next to each other */
+/*Original (5 recipe per row) */
 .column {
-  flex: 25%;
-  max-width: 25%;
+  flex: 20%;
+  max-width: 20%;
   padding: 0 4px;
 }
 
 .column img {
   vertical-align: middle;
   width: 100%;
+  height: 550px;
 }
 
 
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 1000px) {
+/*Smaller 1 (4 recipe per row) */
+@media screen and (max-width: 1600px) {
   .column {
-    flex: 50%;
-    max-width: 50%;
+    flex: 25%;
+    max-width: 25%;
   }
-
+  .column img {
+    vertical-align: middle;
+    width: 100%;
+    height: 450px;
+  }
+}
+/*Smaller 2 (3 recipe per row) */
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1060px) {
+  .column {
+    flex: 33.333333333333%;
+    max-width: 33.333333333333%;
+  }
+  .column img {
+    vertical-align: middle;
+    width: 100%;
+    height: 450px;
+  }
 }
 
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+/*Smaller 3*/
 @media screen and (max-width: 600px) {
   .column {
-    /*flex: 100%;*/
-    /*max-width: 600px;*/
-    /*width: 100px;*/
+    flex: 50.01%;
+    max-width: 50.01%;
+  }
+  .column img {
+    vertical-align: middle;
+    width: 100%;
+    height: 600px;
   }
 }
+
+
+
+
 
 h2 {
   font-family: "Perpetua";

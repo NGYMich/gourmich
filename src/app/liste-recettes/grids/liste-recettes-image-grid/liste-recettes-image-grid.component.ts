@@ -6,6 +6,7 @@ import {Recette} from '../../../model/recette';
 import {HttpClient} from "@angular/common/http";
 import {RecetteService} from "../../../services/RecetteService";
 import {isNumeric} from "rxjs/internal-compatibility";
+import {fromEvent, Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-liste-recettes-image-grid',
@@ -13,6 +14,8 @@ import {isNumeric} from "rxjs/internal-compatibility";
   styleUrls: ['./liste-recettes-image-grid.component.css']
 })
 export class ListeRecettesImageGridComponent implements OnInit {
+  resizeObservable$: Observable<Event>;
+  resizeSubscription$: Subscription;
   @Input() rowData: any;
   @Input() isMobile: boolean;
 
@@ -24,7 +27,10 @@ export class ListeRecettesImageGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.resizeObservable$ = fromEvent(window, 'resize');
+    this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
+      console.log('width : ' + window.innerWidth + ' | height : ' + window.innerHeight);
+    });
 
   }
 
