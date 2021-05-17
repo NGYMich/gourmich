@@ -88,7 +88,6 @@
       <br>
 
 
-
       <mat-form-field appearance="legacy">
         <mat-label>Lien vidéo</mat-label>
         <input formControlName="lien_video" matInput>
@@ -180,7 +179,7 @@
 
           {{pointIndex + 1}}.
           <mat-form-field [floatLabel]="'never'" appearance="legacy" class="nom-etape-form-field">
-            <input class="input-etape" formControlName="nom_etape" matInput/>
+            <textarea cdkTextareaAutosize class="input-etape" formControlName="nom_etape" matInput></textarea>
             <mat-placeholder class="placeholder">Étape</mat-placeholder>
           </mat-form-field>
 
@@ -269,8 +268,6 @@
 
 
         <br>
-
-
 
 
         <mat-form-field appearance="legacy">
@@ -372,9 +369,9 @@
         <div formArrayName="modifyEtapes">
           <div *ngFor="let etape of modifyEtapes.controls; let pointIndex=index" [formGroupName]="pointIndex">
 
-            {{pointIndex + 1}}.
             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="nom-etape-form-field">
-              <input class="input-etape" formControlName="nom_etape" matInput/>
+              {{pointIndex + 1}}.
+              <textarea cdkTextareaAutosize class="input-etape" formControlName="nom_etape" matInput></textarea>
               <mat-placeholder class="placeholder">Étape</mat-placeholder>
             </mat-form-field>
 

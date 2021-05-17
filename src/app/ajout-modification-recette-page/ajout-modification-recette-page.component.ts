@@ -44,7 +44,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
     nom: '',
     description: '',
     lien_image: '',
-    lien_vieo: '',
+    lien_video: '',
     temps_preparation: '',
     temps_cuisson: '',
     temps_total: '',
