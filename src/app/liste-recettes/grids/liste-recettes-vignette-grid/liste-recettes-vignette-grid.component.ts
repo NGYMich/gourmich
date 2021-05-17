@@ -102,7 +102,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       resizable: true,
       filter: 'agTextColumnFilter',
       width: 120,
-      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 20px;'}
     },
     {
       field: 'sous_categorie',
@@ -115,10 +115,10 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       cellStyle: {'vertical-align': 'middle'}
     },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 130,
-      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 20px;'}
     },
     {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 300, sort: 'asc',
-      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 20px;'}
     },
     {
       field: 'nb_personnes',
@@ -146,7 +146,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       resizable: true,
       filter: 'agTextColumnFilter',
       width: 110,
-      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 20px;'}
     },
     {
       field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100, hide: true,
@@ -200,7 +200,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       resizable: true,
       filter: 'agTextColumnFilter',
       width: 950,
-      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 18px;'}
+      cellStyle: {'white-space': 'normal; line-height: 1.6; font-size: 20px;'}
     }
   ];
   gridOptions = {
