@@ -1,11 +1,17 @@
 .row {
+  display: -ms-flexbox; /* IE10 */
   display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
   padding: 0 4px;
 }
 
-/* Create four equal columns that sits next to each other */
-/*Original (5 recipe per row) */
+* {
+  box-sizing: border-box;
+}
+
+ /*Create four equal columns that sits next to each other*/
+/*Original (5 recipe per row)*/
 .column {
   flex: 20%;
   max-width: 20%;
@@ -15,7 +21,7 @@
 .column img {
   vertical-align: middle;
   width: 100%;
-  height: 550px;
+  height: 520px;
 }
 
 
@@ -45,21 +51,29 @@
   }
 }
 
-
-/*Smaller 3*/
 @media screen and (max-width: 600px) {
   .column {
-    flex: 50.01%;
-    max-width: 50.01%;
+    flex: 49.99%;
+    max-width: 49.99%;
   }
   .column img {
     vertical-align: middle;
-    width: 100%;
+    width: 99.99%;
     height: 600px;
   }
 }
 
 
+/*@media screen and (max-width: 600px) {*/
+/*  .column {*/
+/*    flex: 99.9%;*/
+/*    width: 99.9%;*/
+/*  }*/
+/*  .column img {*/
+/*    width: 100%;*/
+/*    height: 450px;*/
+/*  }*/
+/*}*/
 
 
 
