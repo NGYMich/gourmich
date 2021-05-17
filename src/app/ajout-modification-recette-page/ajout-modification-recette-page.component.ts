@@ -240,7 +240,7 @@ export class AjoutModificationRecettePageComponent implements OnInit {
       recetteId: this.selectedRecetteToModify.recetteId,
       categorie: this.modifyInformationsForm.get('categorie').value,
       sous_categorie: this.modifyInformationsForm.get('sous_categorie').value,
-      cout_recette: this.modifyInformationsForm.get('sous_categorie').value,
+      cout_recette: this.modifyInformationsForm.get('cout_recette').value,
       difficulte: this.modifyInformationsForm.get('difficulte').value,
       nb_personnes: this.modifyInformationsForm.get('nb_personnes').value,
       auteur: this.modifyInformationsForm.get('auteur').value,

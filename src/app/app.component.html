@@ -1,5 +1,5 @@
 <div class="header">
-  <mat-toolbar>
+  <mat-toolbar >
     <button mat-button routerLink="/">Accueil</button>
 
     <button mat-button routerLink="/liste-recettes"  style="margin-left: 7%;">Liste de recettes</button>
@@ -7,7 +7,7 @@
     <button mat-button routerLink="/ajout-modification-recette">Ajout et modification de recettes</button>
     <button mat-button routerLink="/recette-aleatoire">Recette aléatoire</button>
     <button mat-button routerLink="/about">À propos</button>
-    <!--  <button mat-button routerLink="/test">Test</button>-->
+    <button mat-button routerLink="/test">V1</button>
   </mat-toolbar>
   <div [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>

@@ -17,7 +17,8 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
   resizeSubscription$: Subscription;
   columnDefs = [];
   mobileColumnDefs = [
-    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 600},
+    {field: 'nom', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 200},
+    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
     {
       field: 'categorie',
       headerName: 'Catégorie',
@@ -26,11 +27,60 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
       filter: 'agTextColumnFilter',
       width: 120
     },
-    {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
+    {
+      field: 'sous_categorie',
+      headerName: 'Sous catégorie',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 150
+    },
     {
       field: 'lien_image',
       hide: true,
       getQuickFilterText: () => ''
+    },
+    {
+      field: 'cout_recette',
+      headerName: 'Coût',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 100,
+      cellStyle: {textAlign: 'center'}
+    },
+    {
+      field: 'difficulte',
+      headerName: 'Difficulté',
+      sortable: true,
+      resizable: true,
+      filter: 'agTextColumnFilter',
+      width: 130
+    },
+    {
+      field: 'liste_ingredients', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 100, hide: true,
+      getQuickFilterText: params => {
+        let allIngredients = '';
+        for (const ingredient of params.value) {
+          allIngredients = allIngredients + ingredient.nom;
+        }
+        return allIngredients;
+      }
+    },
+    {
+      field: 'temps_total',
+      headerName: 'Temps total',
+      sortable: true,
+      resizable: true,
+      width: 110,
+      cellStyle: {textAlign: 'center'}
+    },
+    {
+      field: 'note',
+      sortable: true,
+      resizable: true,
+      width: 85,
+      valueFormatter: params => params.value === '?' ? '' : params.value + '/20'
     },
   ];
   desktopColumnDefs = [
