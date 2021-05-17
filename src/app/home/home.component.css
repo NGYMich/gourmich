@@ -6,7 +6,6 @@
 
 .image-arriere-plan img {
   width: 100%;
-  height: 750px;
 }
 
 .no-padding {
@@ -24,11 +23,12 @@ h4 {
   color: rosybrown;
   font-family: "Old Standard TT";
   font-size: 40px;
-  line-height: 48px;
+  line-height: 25px;
   font-weight: bold;
   text-align: center;
   padding: 5px 5px;
-  margin-bottom: 10px;
+  display: flex;
+  margin: 22px 50px 0 50px;
 }
 
 
@@ -56,7 +56,7 @@ h4 {
 .column img {
   vertical-align: middle;
   width: 100%;
-  height: 520px;
+  height: 490px;
 }
 
 
