@@ -18,25 +18,36 @@
 
 
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .column {
     flex: 50%;
     max-width: 50%;
   }
+
 }
+
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .column {
-    flex: 100%;
-    max-width: 100%;
+    /*flex: 100%;*/
+    /*max-width: 600px;*/
+    /*width: 100px;*/
   }
 }
 
 h2 {
   font-family: "Perpetua";
   font-style: italic;
-  /*font-weight: bold;*/
-  /*font-family: Didot;*/
   font-size: 28px;
+  text-align: center;
+  margin: 0px 0 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mat-form-field {
+  margin-left: 10px;
+  margin-top: 10px;
 }

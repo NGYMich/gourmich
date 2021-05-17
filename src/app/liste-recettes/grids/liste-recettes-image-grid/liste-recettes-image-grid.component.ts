@@ -2,6 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DialogueRecetteMobileComponent} from '../../dialogue-recette-mobile/dialogue-recette-mobile.component';
 import {DialogueRecetteComponent} from '../../dialogue-recette/dialogue-recette.component';
 import {MatDialog} from '@angular/material/dialog';
+import {Recette} from '../../../model/recette';
+import {HttpClient} from "@angular/common/http";
+import {RecetteService} from "../../../services/RecetteService";
+import {isNumeric} from "rxjs/internal-compatibility";
 
 @Component({
   selector: 'app-liste-recettes-image-grid',
@@ -9,13 +13,19 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./liste-recettes-image-grid.component.css']
 })
 export class ListeRecettesImageGridComponent implements OnInit {
-  @Input() newData;
   @Input() rowData: any;
   @Input() isMobile: boolean;
 
-  constructor(public dialog: MatDialog) { }
+  recettesFiltrees: Recette[];
+  originalRecettes: Recette[];
+  filtre: string;
+
+  constructor(public dialog: MatDialog, private recetteService: RecetteService) {
+  }
 
   ngOnInit(): void {
+
+
   }
 
   ouvrirRecette(recette): void {
@@ -38,4 +48,16 @@ export class ListeRecettesImageGridComponent implements OnInit {
     }
   }
 
+  filtrerRecette(filtre: string, reset: boolean): void {
+      this.recetteService.getRecettes().subscribe(data => {
+        if (this.filtre !== '' && reset !== true) {
+          this.filtre = this.filtre.toLocaleLowerCase();
+          // data = data.filter((recette: any) => recette?.nom?.toLocaleLowerCase().indexOf(this.filtre) !== -1);
+          data = data.filter((recette: any) => JSON.stringify(recette).toLocaleLowerCase().indexOf(this.filtre) !== -1);
+        } else {
+          this.filtre = '';
+        }
+        this.rowData = data;
+      });
+    }
 }

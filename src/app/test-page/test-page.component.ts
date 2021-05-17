@@ -23,7 +23,6 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class TestPageComponent implements OnInit {
   displayedColumns: string[] = ['categorie', 'auteur', 'nom', 'temps_preparation', 'temps_cuisson', 'temps_total', 'note'];
-  newData;
   dataSource;
   expandedElement: Recette | null;
   hasDataLoaded = false;
@@ -72,14 +71,13 @@ export class TestPageComponent implements OnInit {
       // console.log(data);
       // @ts-ignore
       this.hasDataLoaded = true;
-      this.newData = data;
-      this.newData.forEach(recette => {
+      data.forEach(recette => {
         // tslint:disable-next-line:max-line-length
         recette.temps_total = (recette.temps_cuisson === null && recette.temps_preparation === null) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : null;
         recette.temps_cuisson = this.minToHours(Number(recette.temps_cuisson));
         recette.temps_preparation = this.minToHours(Number(recette.temps_preparation));
       });
-      this.dataSource = new MatTableDataSource(this.newData);
+      this.dataSource = new MatTableDataSource(data);
       //this.dataSource.sort = this.sort;
     })
   }

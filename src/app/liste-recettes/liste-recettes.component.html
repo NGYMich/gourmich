@@ -18,7 +18,7 @@
 </div>
 
 
-<app-liste-recettes-detailed-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData" *ngIf="detailedGridChosen"></app-liste-recettes-detailed-grid>
-<app-liste-recettes-vignette-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData"*ngIf="vignetteGridChosen"></app-liste-recettes-vignette-grid>
-<app-liste-recettes-image-grid [rowData]="rowData" [isMobile]="isMobile" [newData]="newData" *ngIf="imageGridChosen"></app-liste-recettes-image-grid>
+<app-liste-recettes-detailed-grid [rowData]="rowData" [isMobile]="isMobile" *ngIf="detailedGridChosen"></app-liste-recettes-detailed-grid>
+<app-liste-recettes-vignette-grid [rowData]="rowData" [isMobile]="isMobile" *ngIf="vignetteGridChosen"></app-liste-recettes-vignette-grid>
+<app-liste-recettes-image-grid [rowData]="rowData" [isMobile]="isMobile" *ngIf="imageGridChosen"></app-liste-recettes-image-grid>
 

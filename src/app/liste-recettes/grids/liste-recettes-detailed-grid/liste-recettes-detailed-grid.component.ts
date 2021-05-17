@@ -122,8 +122,7 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
     domLayout: 'autoHeight'
   };
 
-  searchValue;
-  @Input() newData: any;
+  filtre: string;
   @Input() rowData: any;
   @Input() isMobile: boolean;
   private gridApi;
@@ -133,7 +132,6 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getListeRecettes();
     this.isMobile = this.deviceService.isMobile();
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
@@ -141,36 +139,6 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(): void {
-    this.resizeSubscription$.unsubscribe();
-  }
-
-  getListeRecettes(): void {
-    this.recetteService.getRecettes().subscribe(data => {
-      this.newData = data;
-      this.newData.forEach(recette => {
-        if (recette.temps_cuisson !== '' && recette.temps_preparation !== '') {
-          recette.temps_total = isNumeric(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) ? this.minToHours(Number(recette.temps_preparation) + Number(recette.temps_cuisson)) : recette.temps_total;
-        }
-        recette.temps_cuisson = isNumeric(recette.temps_cuisson) ? this.minToHours(Number(recette.temps_cuisson)) : recette.temps_cuisson;
-        recette.temps_preparation = isNumeric(recette.temps_preparation) ? this.minToHours(Number(recette.temps_preparation)) : recette.temps_preparation;
-      });
-      this.rowData = this.newData;
-      // this.dataSource.sort = this.sort;
-    });
-  }
-
-  minToHours(minutes: number): string {
-    let newMinutes;
-    let newHours;
-    if (minutes < 60) {
-      return minutes === 0 ? minutes + ' min' : minutes + ' min';
-    } else {
-      newHours = Math.trunc(minutes / 60);
-      newMinutes = minutes - newHours * 60;
-    }
-    return newMinutes !== 0 ? newHours + 'h' + newMinutes : newHours + 'h' + newMinutes + '0';
-  }
 
   onGridReady(params): void {
     this.gridApi = params.api;

@@ -2,9 +2,17 @@
   <link href="//fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet" type="text/css"/>
 </head>
 
+<mat-form-field>
+  <mat-label wid>Filtre de recherche</mat-label>
+  <input (keyup)="filtrerRecette(filtre, false)" (keydown.enter)="filtrerRecette(filtre, false)" width="30%" matInput type="text"
+         [(ngModel)]="filtre"/>
+</mat-form-field>
+<!--<button mat-button (click)="filtrerRecette(filtre, false)">Filtrer les recettes</button>-->
+<button mat-button (click)="filtrerRecette(filtre, true)">Annuler le filtre</button>
+
 <div class="row" style="margin-left: 0.5%; margin-right: 0.5%; margin-top: 10px;">
   <div *ngFor="let recette of rowData" class="column">
-    <h2 style="text-align: center; margin: 0px 0 0 0;">{{recette.nom}}</h2>
+    <h2>{{recette.nom}}</h2>
     <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}} style="width: 450px; height: 675px; cursor: pointer; border: solid 2px; border-radius: 60px;">
   </div>
 </div>
