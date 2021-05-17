@@ -206,7 +206,7 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
   gridOptions = {
     rowSelection: 'single',
     pagination: true,
-    paginationPageSize: 20,
+    paginationPageSize: 16,
     domLayout: 'autoHeight',
     rowHeight: 304
   };
