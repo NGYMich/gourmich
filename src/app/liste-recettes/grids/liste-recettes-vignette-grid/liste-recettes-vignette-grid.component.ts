@@ -37,7 +37,8 @@ export class ListeRecettesVignetteGridComponent implements OnInit {
       width: 240,
       sortable: false,
       resizable: true,
-      cellRendererFramework: ImageFormatterComponent
+      cellRendererFramework: ImageFormatterComponent,
+      getQuickFilterText: () => ''
     },
     {
       field: 'categorie',

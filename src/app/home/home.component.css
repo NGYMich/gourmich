@@ -23,12 +23,12 @@ p {
 h4 {
   color: rosybrown;
   font-family: "Old Standard TT";
-  font-size: 30px;
+  font-size: 40px;
   line-height: 48px;
-  margin: 0;
   font-weight: bold;
   text-align: center;
   padding: 5px 5px;
+  margin-bottom: 10px;
 }
 
 

@@ -114,6 +114,11 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
       width: 85,
       valueFormatter: params => params.value === '?' ? '' : params.value + '/20'
     },
+    {
+      field: 'lien_image',
+      hide: true,
+      getQuickFilterText: () => ''
+    },
   ];
   gridOptions = {
     rowSelection: 'single',
