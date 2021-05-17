@@ -5,17 +5,18 @@
 </div>
 
 
-<div style="margin-top: 50px;" *ngIf="selectedRandomRecette">
+<div class="row" style="margin-top: 50px;" *ngIf="selectedRandomRecette">
 
-  <div class="image-div">
+
+  <div class="col-4">
     <img class="center-cropped" src={{selectedRandomRecette?.lien_image}}>
   </div>
 
-  <div class="informations-random-recette-div">
+  <div class="col-7">
     <h1 style="font-size: 30px;">{{selectedRandomRecette?.nom}}
     </h1>
 
-    <h3 style="font-size: 20px;"> {{selectedRandomRecette?.description}}</h3>
+    <h3 style="font-size: 20px; text-align: justify"> {{selectedRandomRecette?.description}}</h3>
     <div class="ingredients-div">
 
       <mat-list>
