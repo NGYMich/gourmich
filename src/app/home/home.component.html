@@ -100,7 +100,7 @@
 </div>
 
 <div class="row"
-     style="margin-left: 0.5%; margin-right: 0.5%; margin-top: 10px;">
+     style="margin-left: 0.5%; margin-right: 0.5%;">
   <div *ngFor="let recette of rowData" class="column">
     <h2>{{recette.nom}}</h2>
     <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}}
