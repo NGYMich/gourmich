@@ -27,6 +27,11 @@ export class ListeRecettesDetailedGridComponent implements OnInit {
       width: 120
     },
     {field: 'auteur', sortable: true, resizable: true, filter: 'agTextColumnFilter', width: 150},
+    {
+      field: 'lien_image',
+      hide: true,
+      getQuickFilterText: () => ''
+    },
   ];
   desktopColumnDefs = [
     {
