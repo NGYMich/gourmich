@@ -16,18 +16,7 @@
         bonne application qui aurait répondu à ses besoins pour stocker les recettes qu'il a trouvées tout au long de
         son aventure, il a donc décidé qu'il allait créer la sienne.
         <br> <br>
-        <button mat-raised-button><i style="cursor: pointer; font-size: 16px;" ng-mouseover="class='hovering'"  [routerLink]="['/liste-recettes']">Découvrons ensemble ce qu'il propose !</i></button>
-<!--        <br> <br>
-        L'application est ainsi développée en Angular 11 et Java 8. On utilisera notamment les frameworks bootstrap et
-        material-ui pour rendre l'application plus esthétique.
-        <br> <br>
-        Sur ce site, on pourra y trouver une liste de recettes avec les ingrédients et les étapes nécessaires pour
-        réussir chaque recette.
-        <br> <br>
-        Voici des exemples de recettes que Mich a pu découvrir au long de son périple : chili con carne, blanquette de
-        veau, riz cantonnais, sauté de veau, hauts de cuisse de poulet, tomates farcies, loc lac.. Que de délicieux
-        plats qu'il a mis en ligne. Quelle chance vous avez !
-      </p>-->
+        <button mat-raised-button [routerLink]="['/liste-recettes']" class="hover-class" ><i style="font-size: 16px;">Découvrons ensemble ce qu'il propose !</i></button>
     </div>
   </div>
   <div *ngIf="isMobile" class="row row-cols-1">

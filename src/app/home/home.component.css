@@ -131,3 +131,6 @@ h2 {
 .dialog-class {
   background-color: blue;
 }
+.hover-class:hover {
+  background-color: wheat;
+}
