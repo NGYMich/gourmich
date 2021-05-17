@@ -3,9 +3,13 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+
 html, body {
   height: 100%;
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
+  /*background-image: url('https://i.pinimg.com/originals/79/a9/1e/79a91ec14d50973bc199f38190485269.jpg');*/
+  background-repeat: no-repeat;
+  /*color: black;*/
 }
 
 body {

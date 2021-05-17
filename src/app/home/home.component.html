@@ -4,18 +4,20 @@
 
 <div class="image-arriere-plan no-padding">
   <div *ngIf="!isMobile" class="row">
-    <div class="col-4" style="padding-left: 25px; padding-top: 10px;">
+<!--    <div class="col-4" style="padding-left: 25px; padding-top: 10px;">
       <img alt="Photo of Mich eating"
            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/34120/cook-man-clipart-xl.png">
-      <!--           src="https://images.pexels.com/photos/4110193/pexels-photo-4110193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">-->
-    </div>
-    <div class="col-8" style="padding-left: 50px; padding-right: 50px;">
+      &lt;!&ndash;           src="https://images.pexels.com/photos/4110193/pexels-photo-4110193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">&ndash;&gt;
+    </div>-->
+    <div class="col-12" style="padding-left: 30%; padding-right: 30%;">
       <h4>GourMich</h4>
       <p>
         Mich est un ingénieur logiciel vietnamien/français qui souhaite apprendre à cuisiner. Il n'a pas pu trouver une
         bonne application qui aurait répondu à ses besoins pour stocker les recettes qu'il a trouvées tout au long de
         son aventure, il a donc décidé qu'il allait créer la sienne.
         <br> <br>
+        <i>Découvrons ensemble ce qu'il propose !</i>
+<!--        <br> <br>
         L'application est ainsi développée en Angular 11 et Java 8. On utilisera notamment les frameworks bootstrap et
         material-ui pour rendre l'application plus esthétique.
         <br> <br>
@@ -25,46 +27,7 @@
         Voici des exemples de recettes que Mich a pu découvrir au long de son périple : chili con carne, blanquette de
         veau, riz cantonnais, sauté de veau, hauts de cuisse de poulet, tomates farcies, loc lac.. Que de délicieux
         plats qu'il a mis en ligne. Quelle chance vous avez !
-      </p>
-      <h4>La cuisine</h4>
-      <p>
-        La cuisine est l'ensemble des techniques de préparation des aliments en vue de leur consommation par les êtres
-        humains (voir cuisinerie). La cuisine est diverse à travers le monde. Elle est l'un des éléments représentant la
-        notion de terroir quand elle est le fruit des ressources naturelles et productions agricoles locales, des us et
-        coutumes, de la culture et des croyances, du perfectionnement des techniques, des échanges entre peuples et
-        cultures.
-        <br> <br>
-        La cuisine a ainsi dépassé son simple impératif biologique d'alimentation pour devenir un corpus de techniques
-        plus ou moins pointues, un fait culturel, un élément de patrimoine et d'identité national ou familial, un
-        élément de systèmes de valeurs, mais aussi un sujet d'étude pour les sciences sociales et la sociologie, voire
-        un enjeu de politique et de santé publique.
-      </p>
-      <h4>Typologie des cuisines</h4>
-      <p>
-        Chaque peuple, nation ou civilisation a développé, à partir des ressources naturelles locales mais aussi du
-        caractère de chaque société, de l'évolution sociale, des traditions, des interactions, des cuisines différentes.
-        Les mouvements de peuples à travers l'Histoire ont provoqué des mélanges et des évolutions de la cuisine. Par
-        exemple, la cuisine européenne a été enrichie par les apports des Croisés de retour des Croisades et bouleversée
-        par les produits rapportés d'Amérique aux XVe et XVIe siècles, qui sont rentrés dans la tradition européenne
-        (tomate, dindon, pomme de terre, etc.).
-        <br> <br>
-
-        Au XVIIIe siècle s'élabore la grande cuisine française qui devient un « art » et se diffuse dans ce qu'on
-        appelle
-        à l’époque le monde civilisé. Avec la colonisation européenne quasi-mondiale de la fin du XIXe siècle, le
-        standard de la cuisine européenne a semblé s'imposer. Dans les années 1970 se développe la nouvelle cuisine, qui
-        laisse la place une dizaine d'années plus tard à, « d'un côté, la mise en concurrence de hautes cuisines
-        nationales de plus en plus nombreuses et, de l'autre, l'affrontement de la cuisine technico-conceptuelle avec la
-        cuisine dite “supernaturelle”. Ce qui donne lieu, à chaque fois, à de beaux affrontements entre néophiles et
-        néophobes ».
-        <br> <br>
-
-        À la fin du XXe siècle, les cuisines se sont métissées à partir des apports du monde entier,
-        tandis que les grandes cuisines non européennes ont à leur tour pénétré les pays occidentaux (cuisine
-        algérienne, cuisine marocaine, cuisine antillaise, cuisine mexicaine, cuisine chinoise, cuisine indienne,
-        cuisine japonaise, etc.). La mondialisation conduit ainsi à des cuisines transnationales avec l'internalisation
-        de la consommation alimentaire de masse.
-      </p>
+      </p>-->
     </div>
   </div>
   <div *ngIf="isMobile" class="row row-cols-1">
@@ -132,4 +95,11 @@
     </div>
   </div>
 
+</div>
+<div class="row"
+     style="margin-left: 0.5%; margin-right: 0.5%; margin-top: 10px;">
+  <div *ngFor="let recette of rowData" class="column">
+    <h2>{{recette.nom}}</h2>
+    <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}} style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+  </div>
 </div>
