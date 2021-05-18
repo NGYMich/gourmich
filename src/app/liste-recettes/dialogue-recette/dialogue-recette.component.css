@@ -2,16 +2,28 @@
   margin-left: 250px;
 }
 
+
 .center-cropped {
   height: 700px;
   width: 30%;
-  border: solid 2px black;
+  border: solid 3px black;
   border-radius: 40px;
 
   float: left;
   max-width: 100%;
   margin-right: 30px;
   vertical-align: center;
+}
+.center-cropped2 {
+  height: 700px;
+
+  /*width: 100%;*/
+  border-radius: 40px;
+
+  /*float: left;*/
+  max-width: 100%;
+  /*margin-right: 30px;*/
+  /*vertical-align: center;*/
 }
 
 
@@ -41,5 +53,13 @@
 
 h1 span {
   font-size: 15px;
-  font-style: italic;
+  /*font-style: italic;*/
+  margin-left: 10px;
+  /*display: inline*/
+  max-height: 10px;
+}
+.video-button {
+  background-color: dimgray;
+  color: white;
+  border-radius: 8px;
 }

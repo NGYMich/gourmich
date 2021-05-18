@@ -4,10 +4,18 @@
 
 <div class="informations-random-recette-div">
   <div style="display:grid; grid-template-columns: 1fr auto;">
-    <h1>{{recette.nom}} <span>({{recette.nb_personnes}} {{recette.nb_personnes <= 1 ? 'personne' : 'personnes'}})</span>
+    <h1 >{{recette.nom}}
+      <span *ngIf="recette.lien_video">
+        <a target="_blank" rel="noopener noreferrer" class="video-button" mat-flat-button color="primary" [attr.href]="recette.lien_video">
+          Video
+        </a>
+      </span>
+
     </h1>
+
     <h3 style="font-style: italic">
       {{recette.difficulte ? recette.difficulte : ''}}
+      {{recette.nb_personnes ? (' - ' + recette.nb_personnes) : '' }} {{ recette.nb_personnes && recette.nb_personnes <= 1? 'personne' : ''}} {{ recette.nb_personnes > 1 ? 'personnes' : ''}}
       {{recette.temps_total ? ' - ' + recette.temps_total : ''}}
       {{recette.cout_recette ? ' - ' + recette.cout_recette : ''}}
     </h3>

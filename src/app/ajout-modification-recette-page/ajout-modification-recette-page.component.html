@@ -173,16 +173,15 @@
       <div formArrayName="etapes">
         <div *ngFor="let etape of etapes.controls; let pointIndex=index" [formGroupName]="pointIndex">
 
-          {{pointIndex + 1}}.
           <mat-form-field [floatLabel]="'never'" appearance="legacy" class="nom-etape-form-field">
+            {{pointIndex + 1}}.
             <textarea cdkTextareaAutosize class="input-etape" formControlName="nom_etape" matInput></textarea>
             <mat-placeholder class="placeholder">Étape</mat-placeholder>
           </mat-form-field>
 
           <button (click)="deleteEtape(pointIndex)" class="delete-step-button" color="suppression-ingredient-etape"
                   mat-raised-button
-                  type="button">Supprimer
-            l'étape
+                  type="button">Supprimer l'étape
           </button>
         </div>
       </div>
