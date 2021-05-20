@@ -103,7 +103,9 @@
      style="margin-left: 0.5%; margin-right: 0.5%;">
   <div *ngFor="let recette of rowData" class="column">
     <h2>{{recette.nom}}</h2>
-    <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}}
+    <img *ngIf="recette.lien_image" (click)="ouvrirRecette(recette)" src={{recette?.lien_image}}
+         style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+    <img *ngIf="!recette.lien_image" (click)="ouvrirRecette(recette)" src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png"
          style="cursor: pointer; border: solid 2px; border-radius: 60px;">
   </div>
 </div>

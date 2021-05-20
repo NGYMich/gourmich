@@ -15,7 +15,8 @@ export class AboutComponent implements OnInit {
     'Add on arrow left or right change recipe',
     'Fix Images liste recettes when width too low (take too much width)',
     'Add filter for image view',
-    'Add backup database spring (see pg_dump google)'
+    'Add backup database spring (see pg_dump google)',
+    'Add mobile management for matdialog'
     ];
   graphicalSuggestions: string[] = ['Add animations', 'Change fonts', 'Add background', 'Add banner'];
 

@@ -4,16 +4,21 @@
 
 <mat-form-field>
   <mat-label wid>Filtre de recherche</mat-label>
-  <input (keyup)="filtrerRecette(filtre, false)" (keydown.enter)="filtrerRecette(filtre, true)" width="30%" matInput type="text"
-         [(ngModel)]="filtre"/>
+  <input (keydown.enter)="filtrerRecette(filtre, true)" (keyup)="filtrerRecette(filtre, false)" [(ngModel)]="filtre" matInput
+         type="text"
+         width="30%"/>
 </mat-form-field>
 <!--<button mat-button (click)="filtrerRecette(filtre, false)">Filtrer les recettes</button>-->
-<button mat-button (click)="filtrerRecette(filtre, true)">Annuler le filtre</button>
+<button (click)="filtrerRecette(filtre, true)" mat-button>Annuler le filtre</button>
 
 <div class="row"
      style="margin-left: 0.5%; margin-right: 0.5%;">
   <div *ngFor="let recette of rowData" class="column">
     <h2>{{recette.nom}}</h2>
-    <img (click)="ouvrirRecette(recette)" src={{recette?.lien_image}} style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+    <img *ngIf="recette.lien_image" (click)="ouvrirRecette(recette)" alt="Pas d'image encore pour la recette !" src={{recette?.lien_image}}
+         style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+    <img *ngIf="!recette.lien_image"
+         src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png "
+         style="cursor: pointer; border: solid 2px; border-radius: 60px;">
   </div>
 </div>

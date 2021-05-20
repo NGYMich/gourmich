@@ -172,9 +172,9 @@
 
       <div formArrayName="etapes">
         <div *ngFor="let etape of etapes.controls; let pointIndex=index" [formGroupName]="pointIndex">
+          {{pointIndex + 1}}.
 
           <mat-form-field [floatLabel]="'never'" appearance="legacy" class="nom-etape-form-field">
-            {{pointIndex + 1}}.
             <textarea cdkTextareaAutosize class="input-etape" formControlName="nom_etape" matInput></textarea>
             <mat-placeholder class="placeholder">Étape</mat-placeholder>
           </mat-form-field>
@@ -369,9 +369,8 @@
 
         <div formArrayName="modifyEtapes">
           <div *ngFor="let etape of modifyEtapes.controls; let pointIndex=index" [formGroupName]="pointIndex">
-
+            {{pointIndex + 1}}.
             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="nom-etape-form-field">
-              {{pointIndex + 1}}.
               <textarea cdkTextareaAutosize class="input-etape" formControlName="nom_etape" matInput></textarea>
               <mat-placeholder class="placeholder">Étape</mat-placeholder>
             </mat-form-field>
