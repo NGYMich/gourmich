@@ -22,7 +22,7 @@
 <!--with mobile slider-->
 
 
-<div height="100vh">
+<div height="100vh"  [@.disabled]="temporaryDisabled">
 
   <mat-toolbar class="white-smoke">
       <button (click)="sidenav.toggle()" fxHide.gt-sm fxShow="true" mat-icon-button>
@@ -42,7 +42,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill class="white-smoke">
-    <mat-sidenav #sidenav class="white-smoke">
+    <mat-sidenav #sidenav class="white-smoke" [autoFocus]="false">
       <mat-nav-list fxLayout="column" class="white-smoke">
         <a mat-button routerLink="/home">Accueil</a>
         <a mat-button routerLink="/liste-recettes">Liste de recettes</a>
