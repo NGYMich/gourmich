@@ -35,7 +35,8 @@ import {ImageFormatterComponent} from './liste-recettes/ImageFormatterComponent'
 import { ListeRecettesDetailedGridComponent } from './liste-recettes/grids/liste-recettes-detailed-grid/liste-recettes-detailed-grid.component';
 import { ListeRecettesVignetteGridComponent } from './liste-recettes/grids/liste-recettes-vignette-grid/liste-recettes-vignette-grid.component';
 import { ListeRecettesImageGridComponent } from './liste-recettes/grids/liste-recettes-image-grid/liste-recettes-image-grid.component';
-
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { ListeRecettesImageGridComponent } from './liste-recettes/grids/liste-re
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatFormFieldModule,
     MatTableModule,
@@ -67,6 +69,7 @@ import { ListeRecettesImageGridComponent } from './liste-recettes/grids/liste-re
     MatTableModule,
     MatToolbarModule,
     MatCheckboxModule,
+    MatSidenavModule,
     MatInputModule,
     MatCardModule,
     MatListModule,

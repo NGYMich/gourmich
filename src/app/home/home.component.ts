@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
   nbImagesAffichees = 5;
 
   setNbImagesAffichees(): void {
-    if (window.innerWidth >= 1600) {
+    if (this.isMobile) {
+      this.nbImagesAffichees = 4;
+    } else if (window.innerWidth >= 1600) {
       this.nbImagesAffichees = 5;
     } else if (window.innerWidth < 1600 && window.innerWidth >= 1061) {
       this.nbImagesAffichees = 4;
@@ -31,12 +33,12 @@ export class HomeComponent implements OnInit {
     console.log('setted!');
   }
   ngOnInit(): void {
+    this.isMobile = this.deviceService.isMobile() ? true : false;
+
     this.onResize();
     console.log('window width: ' + window.innerWidth);
     console.log(this.nbImagesAffichees);
 
-    this.isMobile = this.deviceService.isMobile() ? true : false;
-    this.isMobile = this.deviceService.isMobile();
     this.getListeRecettes();
   }
 
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
       for (const i of randomIntArray) {
         this.homeRecettesDisplayed.push(data[i]);
       }
-      this.rowData = this.homeRecettesDisplayed;
+      this.rowData = this.homeRecettesDisplayed.slice(0, this.nbImagesAffichees);
     });
   }
 
@@ -89,6 +91,7 @@ export class HomeComponent implements OnInit {
   onResize(event?): void {
     console.log('window width: ' + window.innerWidth);
     this.setNbImagesAffichees();
+    // this.homeRecettesDisplayed = this.homeRecettesDisplayed.slice(0, this.nbImagesAffichees);
   }
 
 }

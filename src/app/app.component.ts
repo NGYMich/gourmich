@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {slider} from './animations';
+import {DeviceDetectorService} from "ngx-device-detector";
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,20 @@ import {slider} from './animations';
     slider
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-ui';
+  isShowing: boolean;
+  temporaryDisabled = false;
+  isMobile: boolean;
 
-  prepareRoute(outlet: RouterOutlet) {
+  constructor(private deviceService: DeviceDetectorService) {
+  }
+
+  ngOnInit(): void {
+    this.isMobile = this.deviceService.isMobile() ? true : false;
+  }
+
+  prepareRoute(outlet: RouterOutlet): void {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

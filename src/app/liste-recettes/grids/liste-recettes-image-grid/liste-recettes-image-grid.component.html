@@ -11,11 +11,25 @@
 <!--<button mat-button (click)="filtrerRecette(filtre, false)">Filtrer les recettes</button>-->
 <button (click)="filtrerRecette(filtre, true)" mat-button>Annuler le filtre</button>
 
-<div class="row"
+<div *ngIf="!isMobile" class="row"
      style="margin-left: 0.5%; margin-right: 0.5%;">
   <div *ngFor="let recette of rowData" class="column">
     <img *ngIf="recette.lien_image" (click)="ouvrirRecette(recette)" alt="Pas d'image encore pour la recette !" src={{recette?.lien_image}}
          style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+    <img *ngIf="!recette.lien_image"
+         src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png"
+         style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+    <h2>{{recette.nom}}</h2>
+  </div>
+</div>
+
+
+<div *ngIf="isMobile"
+     style="width: auto;">
+  <div *ngFor="let recette of rowData">
+    <img *ngIf="recette.lien_image" (click)="ouvrirRecette(recette)" alt="Pas d'image encore pour la recette !" src={{recette?.lien_image}}
+         style="cursor: pointer; border: solid 2px; border-radius: 60px; width: 300px; height: 450px;     display:block;
+    margin:auto;">
     <img *ngIf="!recette.lien_image"
          src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png"
          style="cursor: pointer; border: solid 2px; border-radius: 60px;">

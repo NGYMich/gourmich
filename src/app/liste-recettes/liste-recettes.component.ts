@@ -14,7 +14,7 @@ import {ImageFormatterComponent} from './ImageFormatterComponent';
   templateUrl: './liste-recettes.component.html',
   styleUrls: ['./liste-recettes.component.css'],
 })
-export class ListeRecettesComponent implements OnInit, OnDestroy {
+export class ListeRecettesComponent implements OnInit {
 
   detailedGridChosen = false;
   imageGridChosen = true;
@@ -24,8 +24,6 @@ export class ListeRecettesComponent implements OnInit, OnDestroy {
   isMobile: boolean;
 
   constructor(private recetteService: RecetteService) {
-  }
-  ngOnDestroy(): void {
   }
 
   ngOnInit(): void {

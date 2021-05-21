@@ -4,32 +4,33 @@
 </head>
 
 <div class="no-padding">
+  <div class="col-12" style="padding-left: 5%; padding-right: 5%;">
+    <div style="align-items: center;">
+      <img height="160 " width="160"
+           src="https://static.thenounproject.com/png/56269-200.png"
+           style="display: block;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 10px;"
+      >
+      <!--        <h4>GourMich</h4>-->
+
+    </div>
+    <p>
+      Mich est un ingénieur logiciel vietnamien/français qui souhaite apprendre à cuisiner. Il n'a pas pu trouver une
+      bonne application qui aurait répondu à ses besoins pour stocker les recettes qu'il a trouvées tout au long de
+      son aventure, il a donc décidé qu'il allait créer sa propre application.
+      <br> <br>
+      <button [routerLink]="['/liste-recettes']" class="hover-class" mat-raised-button><i style="font-size: 16px;">Découvrons
+        ensemble ce qu'il propose !</i></button>
+  </div>
   <div *ngIf="!isMobile" class="row">
     <!--    <div class="col-4" style="padding-left: 25px; padding-top: 10px;">
           <img alt="Photo of Mich eating"
                src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/34120/cook-man-clipart-xl.png">
           &lt;!&ndash;           src="https://images.pexels.com/photos/4110193/pexels-photo-4110193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">&ndash;&gt;
         </div>-->
-    <div class="col-12" style="padding-left: 30%; padding-right: 30%;">
-      <div style="align-items: center;">
-        <img height="160 " width="160"
-             src="https://static.thenounproject.com/png/56269-200.png"
-             style="display: block;
-              margin-left: auto;
-              margin-right: auto;
-              margin-bottom: 10px;"
-             >
-        <!--        <h4>GourMich</h4>-->
 
-      </div>
-      <p>
-        Mich est un ingénieur logiciel vietnamien/français qui souhaite apprendre à cuisiner. Il n'a pas pu trouver une
-        bonne application qui aurait répondu à ses besoins pour stocker les recettes qu'il a trouvées tout au long de
-        son aventure, il a donc décidé qu'il allait créer sa propre application.
-        <br> <br>
-        <button [routerLink]="['/liste-recettes']" class="hover-class" mat-raised-button><i style="font-size: 16px;">Découvrons
-          ensemble ce qu'il propose !</i></button>
-    </div>
   </div>
   <div class="col-1"></div>
 <!--  <div *ngIf="isMobile" class="row row-cols-1">-->
@@ -99,7 +100,7 @@
 <!--  </div>-->
 </div>
 
-<div class="row"
+<div *ngIf="!isMobile" class="row"
      style="margin-left: 0.5%; margin-right: 0.5%;">
   <div *ngFor="let recette of rowData" class="column">
     <h2>{{recette.nom}}</h2>
@@ -107,5 +108,16 @@
          style="cursor: pointer; border: solid 2px; border-radius: 60px;">
     <img *ngIf="!recette.lien_image" (click)="ouvrirRecette(recette)" src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png"
          style="cursor: pointer; border: solid 2px; border-radius: 60px;">
+  </div>
+</div>
+
+<div *ngIf="isMobile" class="row"
+     style="margin-left: 0.5%; margin-right: 0.5%;">
+  <div *ngFor="let recette of rowData" class="column">
+    <h2 style="font-size: 19px;">{{recette.nom}}</h2>
+    <img *ngIf="recette.lien_image" (click)="ouvrirRecette(recette)" src={{recette?.lien_image}}
+         style="cursor: pointer; border: solid 1px; border-radius: 35px; height: 200px;">
+    <img *ngIf="!recette.lien_image" (click)="ouvrirRecette(recette)" src="https://forums.autodesk.com/autodesk/attachments/autodesk/124/166553/1/Personal_Tri_Part_-_01_2018-Apr-27_02-32-37PM-000_CustomizedView28598958894_png_alpha.png"
+         style="cursor: pointer; border: solid 2px; border-radius: 35px;">
   </div>
 </div>

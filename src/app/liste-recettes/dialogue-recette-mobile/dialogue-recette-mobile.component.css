@@ -19,3 +19,15 @@
   min-height: 50px;
   max-height: 300px;
 }
+
+.center-cropped {
+  /*height: 700px;*/
+  /*width: 30%;*/
+  border: solid 1px black;
+  border-radius: 40px;
+
+  float: left;
+  max-width: 100%;
+  margin-right: 30px;
+  vertical-align: center;
+}

@@ -13,7 +13,7 @@
 -->
 <div style="margin-left: 0.05%;">
   <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('images')">Images</button>
-  <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('vignette')">Vignette</button>
+  <button style="margin-left: 1%;" *ngIf="isMobile" mat-raised-button (click)="chooseGrid('vignette')">Vignette</button>
   <button style="margin-left: 1%;" mat-raised-button (click)="chooseGrid('details')">Details</button>
 </div>
 
