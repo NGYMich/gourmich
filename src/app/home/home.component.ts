@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {isNumeric} from 'rxjs/internal-compatibility';
 import {DialogueRecetteMobileComponent} from '../liste-recettes/dialogue-recette-mobile/dialogue-recette-mobile.component';
@@ -13,19 +13,35 @@ import {RecetteService} from '../services/RecetteService';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  javaFunctionalities: string[] = ['Ajout de la difficulté', 'Modification des temps (int) en (time)', 'Ajout des ingrédients (HashSet ou ArrayList)', 'Ajout des catégories d\'aliments'];
-  angularFunctionalities: string[] = ['Ajout de recettes', 'Modification de recettes', 'Recette aléatoire', 'Ajustement des quantités d\'ingrédients en fonction du nombre de personnes', 'Livre des recettes'];
   isMobile: boolean;
   rowData;
-  private homeRecettesDisplayed: any;
+  homeRecettesDisplayed: any;
+  nbImagesAffichees = 5;
 
+  setNbImagesAffichees(): void {
+    if (window.innerWidth >= 1600) {
+      this.nbImagesAffichees = 5;
+    } else if (window.innerWidth < 1600 && window.innerWidth >= 1061) {
+      this.nbImagesAffichees = 4;
+    } else {
+      this.nbImagesAffichees = 3;
+    }
+    // this.getListeRecettes();
+    console.log(this.nbImagesAffichees);
+    console.log('setted!');
+  }
   ngOnInit(): void {
+    this.onResize();
+    console.log('window width: ' + window.innerWidth);
+    console.log(this.nbImagesAffichees);
+
     this.isMobile = this.deviceService.isMobile() ? true : false;
+    this.isMobile = this.deviceService.isMobile();
+    this.getListeRecettes();
   }
 
   constructor(public dialog: MatDialog, private deviceService: DeviceDetectorService, private recetteService: RecetteService) {
-    this.isMobile = this.deviceService.isMobile();
-    this.getListeRecettes();
+
   }
 
   getListeRecettes(): void {
@@ -33,7 +49,7 @@ export class HomeComponent implements OnInit {
       this.homeRecettesDisplayed = new Array();
 
       const randomIntArray = [];
-      while (randomIntArray.length < 5){
+      while (randomIntArray.length < this.nbImagesAffichees){
         const r = Math.floor(Math.random() * data.length);
         if (randomIntArray.indexOf(r) === -1) { randomIntArray.push(r); }
       }
@@ -69,5 +85,10 @@ export class HomeComponent implements OnInit {
     return Math.random() * (max - min) + min;
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event?): void {
+    console.log('window width: ' + window.innerWidth);
+    this.setNbImagesAffichees();
+  }
 
 }

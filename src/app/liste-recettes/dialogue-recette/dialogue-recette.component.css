@@ -4,8 +4,8 @@
 
 
 .center-cropped {
-  height: 700px;
-  width: 30%;
+  /*height: 700px;*/
+  /*width: 30%;*/
   border: solid 3px black;
   border-radius: 40px;
 
@@ -14,18 +14,6 @@
   margin-right: 30px;
   vertical-align: center;
 }
-.center-cropped2 {
-  height: 700px;
-
-  /*width: 100%;*/
-  border-radius: 40px;
-
-  /*float: left;*/
-  max-width: 100%;
-  /*margin-right: 30px;*/
-  /*vertical-align: center;*/
-}
-
 
 .ingredients-div {
   padding: 0 0 16px 0;
